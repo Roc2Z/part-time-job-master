@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>求职简历-梦海网络</title>
+    <include file="./Tpl/bootstrap/public/static.html" />
+    <style type="text/css">
+    #banner{
+        margin-bottom:16px;
+    }
+    #banner .right {
+        right:14px;
+    }
+    #banner .carousel-control{
+        left:auto;
+    }
+
+    </style>
+</head>
+
+<body>
+    <include file="./Tpl/bootstrap/public/header.html" />
+    <!--container-->
+    <!--banner-->
+    <include file="./Tpl/bootstrap/public/banner.html"/>
+    <!--./banner-->    
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading">兼职</div>
+                    <div class="panel-body">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation"><a href="__APP__/">最近兼职工作</a></li>
+                            <!-- <li role="presentation"><a href="#assort" aria-controls="assort" role="tab" data-toggle="tab">分类查找</a></li> -->
+                            <li role="presentation" class="active"><a href="{:U(" Resume/index ")}">求职简历</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-panel active">
+                                <table class="table">
+                                    <thead>
+                                        <td>姓名</td>
+                                        <td>年龄</td>
+                                        <td>性别</td>
+                                        <td>学校</td>
+                                    </thead>
+                                    <volist name="user_info" id="user_info">
+                                        <tr>
+                                            <td><a href="{:U("UserInfo/index")}?uid={$user_info.uid}">{$user_info.username}</a></td>
+                                            <td>{$user_info.age}</td>
+                                            <td>
+                                                <switch name="user_info.sex">
+                                                    <case value="1">男</case>
+                                                    <case value="2">女</case>
+                                                    <default />保密
+                                                </switch>
+                                            </td>
+                                            <td>{$user_info.school}</td>
+                                        </tr>
+                                    </volist>
+                                </table>
+                            </div>
+                            <nav>
+                                <ul class="pagination">
+                                    {$page}
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="col-md-4">
+                <include file="public:left_content" />
+            </div>-->
+        </div>
+    </div>
+    <!--end container-->
+    <!--footer-->
+    <include file="./Tpl/bootstrap/public/footer.html" />
+    <!--footer-end-->
+    <script>
+    $(".assort a").on('click', function() {
+    });
+    $(document).on('ready', function() {
+        var list = $(".assort .glyphicon").parent();
+        console.log(list);
+        for (var i = 0; i < list.length; i++) {
+            var thehref = list.eq(i).attr('href');
+            var thelast = thehref.substr(thehref.length - 1, 2);
+            var unexpect_last = thehref.substr(0, thehref.length - 1);
+            if (thehref.substr(list.eq(i).attr('href').length - 1, 1) == 1) {
+                $(".assort .glyphicon").eq(i).removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
+            } else {
+                $(".assort .glyphicon").eq(i).removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
+            }
+        }
+    });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,193 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>分类查找-梦海网络</title>
+    <include file="./Tpl/bootstrap/public/static.html" />
+    <style type="text/css">
+    .filter-alter>li+li:before {
+        padding: 0 5px;
+        color: #ccc;
+        content: "\003e";
+    }
+    
+    .filter-alter>li>a {
+        outline: 1px solid #CCC;
+        display: inline-block;
+        padding: 2px 10px;
+    }
+    
+    .filter-alter>li>a:hover {
+        text-decoration: none;
+        background: #CCC;
+    }
+    
+    .filter-alter>li+li>a:after {
+        content: "x";
+        margin-left: 10px;
+    }
+    </style>
+</head>
+
+<body>
+    <include file="./Tpl/bootstrap/public/header.html" />
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10">
+                <div class="panel panel-default">
+                    <div class="panel-heading">分类检索</div>
+                    <div class="panel-body">
+                        <ul class="list-group">
+                            <li class="list-group-item clear-fix"><span class="my-title">类型：</span>
+                                <ul class="list-options">
+                                    <volist name="molds" id="molds">
+                                        <!--
+                                <label class="checkbox-inline my-label">
+                                    <input type="checkbox" id="" name="intent" value="{$molds.mid}">{$molds.name}
+                                </label>
+-->
+                                        <li><a href="{$now_url_style}&style={$molds.mid}">{$molds.name}</a></li>
+                                    </volist>
+                                </ul>
+                            </li>
+                            <li class="list-group-item"><span class="my-title">工资：</span>
+                                <ul class="list-options">
+                                    <li class="my-options"><a href="{$now_url_wage}&wage=1:50">1-50</a></li>
+                                    <li class="my-options"><a href="{$now_url_wage}&wage=50:100">50-100</a></li>
+                                    <li class="my-options"><a href="{$now_url_wage}&wage=100:200">100-200</a></li>
+                                    <li class="my-options"><a href="{$now_url_wage}&wage=200:max">200以上</a></li>
+                                </ul>
+                            </li>
+                            <li class="list-group-item"><span class="my-title">支付方式：</span>
+                                <ul class="list-options">
+                                    <li class="my-options"><a href="{$now_url_py}&py=1">支付宝</a></li>
+                                    <li class="my-options"><a href="{$now_url_py}&py=2">银行卡</a></li>
+                                    <li class="my-options"><a href="{$now_url_py}&py=3">现金</a></li>
+                                </ul>
+                            </li>
+                            <li class="list-group-item">
+                                <span class="my-title">地点：</span>
+                                <ul class="list-options">
+                                    <volist name="address" id="address">
+                                        <li class="my-options"><a href="{$now_url_address}&address={$address.aid}" class="">{$address.city}</a></li>
+                                    </volist>
+                                </ul>
+                            </li>
+                            <li class="list-group-item">
+                                <span class="my-title">公司认证：</span>
+                                <ul class="list-options">
+                                    <li><a href="{$now_url_isvld}&isvld=1">已认证</a></li>
+                                    <li><a href="{$now_url_isvld}&isvld=0">未认证</a></li>
+                                </ul>
+                            </li>
+                            <li class="list-group-item">
+                                <span class="my-title">人数：</span>
+                                <ul class="list-options">
+                                    <li><a href="{$now_url_peonum}&peonum=1:2">1-2</a></li>
+                                    <li><a href="{$now_url_peonum}&peonum=2:5">2-5</a></li>
+                                    <li><a href="{$now_url_peonum}&peonum=5:10">5-10</a></li>
+                                    <li><a href="{$now_url_peonum}&peonum=10:30">10-30</a></li>
+                                    <li><a href="{$now_url_peonum}&peonum=30:max">30以上</a></li>
+                                </ul>
+                            </li>
+                            <li class="list-group-item">
+                                <span class="my-title">工作时长：</span>
+                                <ul class="list-options">
+                                    <li><a href="{$now_url_wt}&wt=min:1">少于1小时</a></li>
+                                    <li><a href="{$now_url_wt}&wt=2:6">2-6小时</a></li>
+                                    <li><a href="{$now_url_wt}&wt=6:max">6小时以上</a></li>
+                                </ul>
+                            </li>
+                            <li class="list-group-item">
+                                <span class="my-title">工作时间段：</span>
+                                <ul class="list-options">
+                                    <li><a href="{$now_url_time}&time=6:9">6点-9点</a></li>
+                                    <li><a href="{$now_url_time}&time=9:12">9点-12点</a></li>
+                                    <li><a href="{$now_url_time}&time=12:15">12点-15点</a></li>
+                                    <li><a href="{$now_url_time}&time=15:18">15点-18点</a></li>
+                                    <li><a href="{$now_url_time}&time=18:22">18点-22点</a></li>
+                                    <li><a href="{$now_url_time}&time=22:6">凌晨-6点</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ol class="breadcrumb filter-alter">
+                            <li><a href="{:U('SortSearch/search')}">所有兼职</a></li>
+                            <volist name="nav_route" id="arr">
+                                <li><a href="{$arr.url}">{$arr.show}</a></li>
+                            </volist>
+                        </ol>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <table class="table">
+                        <if condition="$error_info">
+                            <tr class="list-group-item">
+                                <td>{$error_info}</td>
+                            </tr>
+                            <else />
+                            <thead>
+                            <tr>
+                                <td>名称</td>
+                                <td>兼职类型</td>
+                                <td>工作地</td>
+                                <td>工资</td>
+                                <td>工作时间</td>
+                                <td>浏览量</td>
+                            </tr>
+                        </thead>
+                            <volist name="job_list" id="job">
+                                <tr>{:C('URL_MODEL',1)}<assign name="jid" value="$job.jid"/>
+                                    <td><a href="{:U("JobsInfo/index","jid=$jid")}">{$job.title}</a></td>
+                                    <td>{$job.moldname}</td>
+                                    <td>{$job.addressname}</td>
+                                    <td>{$job.money}元
+                                    <switch name="job.money_style">
+                                        <case value="2">/天</case>
+                                        <case value="1">/小时</case>
+                                        <case value="3">/次</case>
+                                    </switch>
+                                    </td>
+                                    <td>{$job.begin_time|ftime}</td>
+                                    <td>{$job.pv}</td>
+                                </tr>
+                            </volist>
+                        </if>
+                    </table>
+                    <ul class="list-group">
+                    </ul>
+                    <nav>
+                        <ul class="pagination">
+                            {$page}
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="col-md-2">
+            </div>
+        </div>
+    </div>
+    <!--./container-->
+    <!--footer-->
+    <include file="./Tpl/bootstrap/public/footer.html" />
+    <!--./footer-->
+    <script>
+    (function() {
+        var alter = $(".filter-alter>li>a");
+        alter.on('click', function() {
+            var href = location.href;
+            var arr = href.split("&");
+            var i;
+            if (arr.length == 1) {
+                return;
+            }
+            for (i = 1; i < arr.length; i++) {
+                arr[i]
+            }
+        });
+    })();
+    </script>
+</body>
+
+</html>

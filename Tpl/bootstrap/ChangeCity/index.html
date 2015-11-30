@@ -1,0 +1,79 @@
+<!doctype html>
+<!doctype html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>选择城市-梦海网络</title>
+    <include file="./Tpl/bootstrap/public/static.html" />
+    <style type="text/css">
+    .my-select-address {
+        display: inline-block;
+    }
+    
+    .my-select-address>select {
+        width: 130px;
+        display: inline-block;
+    }
+    
+    .my-zimu {
+        display: block;
+        padding: 4px 6px 4px 32px;
+        margin-bottom: 6px;
+    }
+    
+    .my-addr-list a {
+        display: inline-block;
+        padding: 4px 6px;
+        margin: 1px 20px 20px;
+        outline: 1px solid #EEE;
+        cursor: pointer;
+    }
+    </style>
+</head>
+
+<body>
+    <include file="./Tpl/bootstrap/public/header.html" />
+    <!--container-->
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                选择城市
+            </div>
+            <ul class="list-group addr-list">
+                <li class="list-group-item my-addr-list">
+                    <span class="bg-primary my-zimu"></span>
+                    <ul>
+                        <volist name="addr" id="addr">
+                            <a data-aid="{$addr.aid}">{$addr.city}</a>
+                        </volist>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--./container-->
+    <!--footer-->
+    <include file="./Tpl/bootstrap/public/footer.html" />
+    <!--footer-end-->
+    <script type="text/javascript">
+    $(".addr-list a").click(function() {
+        var aid = $(this).attr("data-aid");
+        //ajax
+        $.ajax({
+            url: "{:U('ChangeCity/ChangeCity')}",
+            data: {
+                aid: aid
+            },
+            contentType: 'text/json',
+            success: function(data) {
+                alert(data.info);
+                location.href = "{:U('ChangeCity/index')}";
+            }
+        });
+    });
+    </script>
+</body>
+
+</html>

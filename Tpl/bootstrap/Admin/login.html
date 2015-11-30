@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>兼职平台</title>
+    <include file="./Tpl/bootstrap/public/static.html" />
+    <style type="text/css">
+    </style>
+</head>
+
+<body>
+    <include file="./Tpl/bootstrap/public/header_admin.html" />
+    <!--container-->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">管理员登录</div>
+                <div class="panel-body">
+                <form class="form" id="login-form">
+                    <div class="form-group">
+                    <label>用户名：</label>
+                        <input type="text" name="usernmae" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                    <label for>密码：</label>
+                        <input type="password" name="passwd" class="form-control" />
+                    </div>
+                    <button type="button" class="btn btn-default pull-right">登录</button>
+                </form></div>
+            </div>
+            </div>
+            <div class="col-md-4"></div>       
+        </div>
+    </div>
+    <!--./container-->
+    <!--footer-->
+<include file="./Tpl/bootstrap/public/footer.html" />
+    <!--./footer-->
+    <script>
+    $("#login-form button").on('click',function() {
+        //获取input值
+        var info = new Object();
+        info.username = $("#login-form input").eq(0).val();
+        info.passwd   = $("#login-form input").eq(1).val();
+        console.log(info);
+        //ajax
+        $.ajax({
+            url:"{:U('Admin/loginHandler')}",
+            data:info,
+            type:"POST",
+            success:function(data) {
+                alert(data.info);
+                if( data.status == 1 ) {
+                    location.href = "{:U('Admin/index')}";
+                }
+            }
+        });
+    })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>修改密码-小蜜蜂job</title>
+    <include file="./Tpl/bootstrap/public/static.html" />
+    <style type="text/css">
+    </style>
+</head>
+
+<body>
+    <include file="./Tpl/bootstrap/public/header.html" />
+    <!--container-->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-1">
+                        <form class="form-horizontal" action="">
+                            <label>旧密码：</label>
+                            <input class="form-control" name="old_passwd" />
+                            <label>新密码：</label>
+                            <input class="form-control" type="password" name="new_passwd" />
+                            <label>再输一遍新密码：</label>
+                            <input class="form-control" type="password" name="re_passwd" />
+                            <label>输入验证码：</label>
+                            <div class="" id="verify">
+                                <img src="{:U('ChangePasswd/vCode')}" />
+                                <button class="btn btn-primary" type="button">换一个</button>
+                            </div>
+                            <input class="form-control" name="vcode" />
+                            <button type="button" class="btn btn-primary" id="goto-submit">修改密码</button>
+                        </form>
+                    </div>
+                    <div class="col-md-4"></div>
+                </div>
+            </div>
+            <!--<div class="col-md-4">
+                <include file="public:left_content" />
+            </div>-->
+        </div>
+    </div>
+    <!--./container-->
+    <!--footer-->
+<include file="./Tpl/bootstrap/public/footer.html" />
+    <!--./footer-->
+    <script type="text/javascript">
+    //刷新验证码
+    $("#verify>button").click(function() {
+        var ver_img = $("#verify>img");
+        ver_img.attr("src", "__APP__/Login/vCode?" + new Date().getTime());
+    });
+    $("#verify>img").click(function() {
+        $(this).attr("src", "__APP__/Login/vCode?" + new Date().getTime());
+    });
+
+
+    $("#goto-submit").on('click', function() {
+        var info = getFromInput(".form-horizontal");
+        console.log(info);
+        $.ajax({
+            url: "{:U('ChangePasswd/change')}",
+            data: info,
+            type: "POST",
+            success: function(data) {
+                alert(data.info);
+            }
+        });
+    });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,175 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>编辑企业信息-小蜜蜂job</title>
+<include file="./Tpl/bootstrap/public/static.html" />
+<script type="text/javascript" src="/__GROUP__/js/fullAvatarEditor.js"></script>
+<script type="text/javascript" src="/__GROUP__/js/swfobject.js"></script>
+
+<style type="text/css">
+  .panel-body{position: relative;}
+  .my-perinfo{margin-left:26px;}
+  .my-perinfo>p>span{margin-right:18px;}
+  .my-perimg{border:1px solid #EEE;}
+  .my-select-address{}
+  .my-select-address>select{width:auto;display: inline-block;}
+  .my-personimg{width:200px; cursor: pointer;}
+  #swfwrapper{width:630px;}
+  .must-input {
+        color: #F00;
+        padding: 0 8px;
+        font: 18px/18px "";
+    }
+</style>
+</head>
+<body>
+<include file="./Tpl/bootstrap/public/header.html" />
+<!--container-->
+<div class="container">
+  <div class="page-header">
+      <h1><small>企业信息<small>({$orgInfo.orgname})</small></small></h1>
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+      <form method="post" action="" id="edit-info">
+        <div class="">
+          <label>认证状态：</label><if condition="$orgInfo.is_validate eq 0"><span>未认证</span><else /><span>已认证</span></if>
+          <a class="btn-primary btn" href="{:U('OrgAuth/index')}">认证</a>
+        </div>
+        <div class="form-group">
+          <label for="username"><span class="must-input">*</span>所在地：</label>
+          <div class="my-select-address">
+            <input type="text" class="form-control" name="address" value="{$orgInfo.org_address}" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="phone"><span class="must-input">*</span>客服电话：</label>
+          <input type="text" name="phone" class="form-control" value="{$orgInfo.phone}" placeholder="填写联系电话" />
+        </div>
+        <div class="form-group">
+          <label for="qq"><span class="must-input">*</span>公司网址：</label>
+          <input type="text" id="website" name="website" class="form-control" value="{$orgInfo.website}" placeholder="公司网址" />
+        </div>
+          <div class="form-group">
+            <label for="exp"><span class="must-input">*</span>公司或机构介绍:</label>
+            <textarea class="form-control" rows="3" id="exp" name="org_intro" placeholder="简要介绍">{$orgInfo.org_intro}</textarea>
+          </div>
+        <div class="form-group">
+          <label for="intent"><span class="must-input">*</span>招聘意向:</label>
+          <div>
+          <if condition="$mold_error_info">
+          {$mold_error_info}
+          <else />
+         <volist name="mold_info" id="molds">
+			
+          <if condition="in_array($molds['mid'],unserialize($orgInfo['intent']))">
+
+            <label class="checkbox-inline">
+              <input type="checkbox" id="" name="intent" value="{$molds.mid}" checked="true">{$molds.name}
+            </label>
+            <else />
+            <label class="checkbox-inline">
+              <input type="checkbox" id="" name="intent" value="{$molds.mid}">{$molds.name}
+            </label>
+           </if>
+         </volist>
+         </if>
+          </div>
+        </div>
+        <button type="button" class="btn btn-primary"id="goto-info">修改</button>
+      </form>
+      <div class="panel">
+      	<ul>
+      	<volist name="apply" id="apply">
+      		<a href="{:U('JobsInfo/index')}&jid={$apply.jid}">{$apply.title}{$apply.ctime|date="m-d",###}</a>
+      	</volist>
+      	</ul>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">修改LOGO</div>
+        <div class="panel-body">
+          <img src="{$orgInfo.avatar}" class="img-thumbnail center-block my-personimg" data-toggle="modal" data-target="#headimg" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--./container-->
+<!--上传头像用model框-->
+<div class="modal fade" id="headimg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">修改头像</h4>
+      </div>
+      <div class="modal-body">
+        <div class="center-block" id="swfwrapper">
+                <p id="swfContainer">
+                    本组件需要安装Flash Player后才可使用，请从
+                    <a href="http://www.adobe.com/go/getflashplayer">这里</a>
+                    下载安装。
+                </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--footer-->
+<include file="./Tpl/bootstrap/public/footer.html" />
+<!--./footer-->
+<script type="text/javascript">
+            swfobject.addDomLoadEvent(function () {
+                var queryInfo = "";
+                var swf = new fullAvatarEditor("/__GROUP__/swf/fullAvatarEditor.swf", "/__GROUP__/swf/expressInstall.swf", "swfContainer", {
+                        id : "swf",
+                        upload_url : "{:U('AvatarUpload/upload')}",
+                        method : "post",
+                        isShowUploadResultIcon : true,
+                        src_url : "{$orgInfo.avatar}",
+                        src_upload : 0
+                    },function(msg){
+                        switch(msg.code)
+                        {
+
+                    }}
+                );
+            });
+</script>
+<script type="text/javascript">
+$("#goto-info").click(function(){
+	//获取数据
+	var info = getFromInput('#edit-info');
+	var checkboxs = $("input[type='checkbox']");
+	var intent = new Array();
+	for(var i=0;i<checkboxs.length;i++){
+		if(checkboxs.eq(i).is(":checked")){
+			intent.push(checkboxs.eq(i).val());
+		}
+	}
+	info.intent = intent;
+  console.log(info.intent);
+	//ajax
+	$.ajax({
+		url:'{:U('OrgCenter/updateInfo')}',
+		data:info,
+		type:"POST",
+		success:function(data){
+			alert(data.info);
+      if(data.status == 1){
+        location.href = '';
+      }
+		}
+		});
+});
+
+
+</script>
+</body>
+</html>

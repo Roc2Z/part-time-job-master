@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>兼职平台</title>
+    <include file="./Tpl/bootstrap/public/static.html" />
+    <style type="text/css">
+    .scroll-content {
+        position: relative;
+    }
+    .panel-body {
+        position: relative;
+    }
+    .list-group a.list-group-item {
+        cursor: pointer;
+    }
+    .btn-content {
+        position: absolute;
+        right: 10px;
+        margin-top: -8px;
+    }
+    </style>
+</head>
+
+<body>
+    <include file="./Tpl/bootstrap/public/header_admin.html" />
+    <!--container-->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <include file="leftNav" />
+                </ul>
+            </div>
+            <div class="col-md-9">
+            <div class="panel panel-primary">
+                    <div class="panel-heading" id="auth-apply">认证申请列表</div>
+                    <ul class="list-group">
+                        <if condition="is_null($orgsauth_error)">
+                            <volist name="orgsauth_list" id="apply">
+                                <li class="list-group-item"><a href="{:U("Admin/authDetail")}?oid={$apply.oid}">{$apply.orgname}</a></li>
+                            </volist>
+                            <else/>
+                            <li class="list-group-item">{$orgsauth_error}</li>
+                        </if>
+                    </ul>
+                    <ul class="pagination">{$orgsauth_page}</ul>
+                </div>
+            </div>
+        </div>
+    <!--./container-->
+    <!--footer-->
+<include file="./Tpl/bootstrap/public/footer.html" />
+    <!--./footer-->
+</body>
+</html>
