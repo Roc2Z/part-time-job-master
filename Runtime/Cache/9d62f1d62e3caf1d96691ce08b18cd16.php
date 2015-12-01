@@ -21,7 +21,7 @@
     #banner{
         width:auto;
         margin-bottom:16px;
-        margin-left:-14px;
+        margin:0 auto;
     }
     #banner .right {
         right:14px;
