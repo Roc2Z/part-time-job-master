@@ -49,7 +49,64 @@
             margin-left:6%;
         }
     }
-
+	.menu_channel{
+		width:100%;
+		border-bottom:1px solid #ddd;
+		height:40px;
+	}
+	.menu_channel a{
+		display:block;
+		float:left;
+		width:33.333%;
+		text-align:center;
+		padding-top:5px;
+		line-height:30px;
+		
+		}
+	.tjob{
+		margin-top:10px;
+		display:block;
+		width:100%;
+		height:88px;
+		border-bottom:1px solid #ddd;
+		text-decoration:none;
+		color:black;
+		}
+	.tjob_name{
+	
+		display:block;
+		width:100%;
+		height:30px;
+		padding-top:10px;
+		font-size:16px;
+		font-family:黑体;
+		}
+	.tjob_addressname,.tjob_time,.tjob_pv{
+		display:block;
+		width:100%;
+		font-size:10px;
+		font-family:微软雅黑;
+		color:#999;
+		margin-top:5px;
+		}
+	.tjob_money{
+		display:block;
+		width:35%;
+		height:30px;
+		font-size:12px;
+		font-family:微软雅黑;
+		color:#999;
+		float:right;
+		margin-top:28px;
+		text-align:center;
+		line-height:30px;
+		
+		}
+	.tjob_t{
+		float:left;
+		width:60%;
+		padding-left:20px;
+		}
     </style>
 </head>
 
@@ -77,45 +134,76 @@
                         </ul>
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane active" id="newest">
-                                <!--分类选择-->
+                            	<div class="menu_channel">
+                                	<a href="index.php?sort={$arr_sort.address}">地点</a>
+                                	<a href="index.php?sort={$arr_sort.money}">工资</a>
+                                    <a href="index.php?sort={$arr_sort.ctime}">时间</a>
+                                </div>
+                                <!--
                                 <table class="table">
+                             	-->
+                                <!--分类选择
                                     <thead>
-                                            <td></td>
-                                            <td>
-                                        <a href="index.php?sort={$arr_sort.address}">地点</a></td>
+                                            
+                                            <td><a href="index.php?sort={$arr_sort.address}">地点</a></td>
                                             <td><a href="index.php?sort={$arr_sort.money}">工资</a></td>
                                             
                                             <td><a href="index.php?sort={$arr_sort.ctime}">时间</a></td>
-                                            <!--删掉的东西
+                                           
                                             <span class="glyphicon glyphicon-chevron-down"></span>
                                             <td><a href="index.php?sort={$arr_sort.pv}">浏览量</a></td>
                                             
-                                            -->
+                                            
                                             
                                     </thead>
-                                <!--/分类选择-->
-                                <!-- 兼职列表 -->
-                                <volist name="list" id="job">
-                                    <tr>
-                                        <td><a href="{:U('JobsInfo/index')}?jid={$job.jid}">{$job.title}
-                            {//新增的一个小时内，显示new，3600为一个小时}
-                            <if condition="time()-$job['ctime'] elt 3600">
-                            <span class="label label-danger">New</span>
-                            </if></a></td>
-                                        <td><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>{$job.addressname}</td>
-                                        <td><span class="glyphicon glyphicon-yen" aria-hidden="true"></span>{$job.money}元
-                                        <switch name="job.money_style">
-                                            <case value="1">/小时</case>
-                                            <case value="2">/天</case>
-                                            <case value="3">/次</case>
-                                        </switch>
-                                        </td>
-                                        <td><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>{$job.pv}</td>
-                                        <td><span class="glyphicon glyphicon-time"></span>{$job.ctime|ftime}</td>
-                                    </tr>
-                                    </volist>
-                                <!--./兼职列表-->
+                                -->
+                                <!-- 兼职列表 
+                                    <volist name="list" id="job">
+                                        <tr>
+                                            
+                                            <td><a href="{:U('JobsInfo/index')}?jid={$job.jid}">{$job.title}
+                                <if condition="time()-$job['ctime'] elt 3600">
+                                <span class="label label-danger">New</span>
+                                </if></a></td>
+                                            <td><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>{$job.addressname}</td>
+                                            <td><span class="glyphicon glyphicon-yen" aria-hidden="true"></span>{$job.money}元
+                                            <switch name="job.money_style">
+                                                <case value="1">/小时</case>
+                                                <case value="2">/天</case>
+                                                <case value="3">/次</case>
+                                            </switch>
+                                            </td>
+                                            <td><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>{$job.pv}</td>
+                                            <td><span class="glyphicon glyphicon-time"></span>{$job.ctime|ftime}</td>
+                                        </tr>
+                                        </volist>
+                                -->
+                                <!--
                                 </table>
+                             	-->
+                                <volist name="list" id="job">
+                                	<a class="tjob" href="{:U('JobsInfo/index')}?jid={$job.jid}">
+                                         <div class="tjob_t">
+                                            <span class="tjob_name" >{$job.title}
+                                                <if condition="time()-$job['ctime'] elt 3600">
+                                                    <span class="label label-danger">New</span>
+                                                </if>
+                                            </span>
+                                            <span class="tjob_addressname">{$job.addressname}</span>
+                                            
+                                            
+                                            <span class="tjob_time">{$job.ctime|ftime}</span>
+                                        </div>
+                                        <span class="tjob_money">{$job.money}元
+                                                <switch name="job.money_style">
+                                                    <case value="1">/小时</case>
+                                                    <case value="2">/天</case>
+                                                    <case value="3">/次</case>
+                                                </switch>
+                                        </span>
+
+                                    </a>    
+                                </volist>
                             </div>
                             <nav>
                                 <ul class="pagination">

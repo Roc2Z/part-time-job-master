@@ -5,7 +5,7 @@ class OrgsModel extends Model{
 		array('email','','邮箱已占用',0,'unique',2),
 		array('email','email','请输入正确的邮箱地址','regex',2),
 		array('login_phone','/1[3|5|7|8|][0-9]{9}/','请输入正确的手机号',1,'regex',1),
-		array('login_phone','','手机已占用',0,'unique'),
+		array('login_phone','','手机已占用',0,'unique',2),
 		array('phone','/1[3|5|7|8|][0-9]{9}/','请输入正确的手机号',1,'regex',2),
 		array('passwd','require','请输入密码',1,'regex',1),
 		array('orgname','require','企业用户须填写企业名称',1,'regex',1),

@@ -20,7 +20,7 @@
         padding: 10px;
     }
     .bg-img{
-        background: #cfdee3 url('/Public/bg_img.jpg') repeat-x;
+        background: #cfdee3 url('__APP__/Public/bg_img.jpg') repeat-x;
         padding:10px 0 10px;
         margin-top:-20px;
     }
@@ -108,6 +108,7 @@
         //获取字段值
 		
         var info = getFromInput('#login-form');
+		console.log(info);
         //checkbox判断
         var pwdmem = $("#pwdmem").is(":checked");
         info.pwdmem = pwdmem ? 1 : 0;

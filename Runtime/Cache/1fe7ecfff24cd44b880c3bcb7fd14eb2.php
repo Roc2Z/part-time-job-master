@@ -29,7 +29,7 @@
         padding: 10px;
     }
     .bg-img{
-        background: #cfdee3 url('/Public/bg_img.jpg') repeat-x;
+        background: #cfdee3 url('__APP__/Public/bg_img.jpg') repeat-x;
         padding:10px 0 10px;
         margin-top:-20px;
     }
@@ -53,6 +53,7 @@
         <span class="icon-bar"></span>
       </button>
       -->
+      
       <a class="" href="__APP__/"><img src="__APP__/Public/logo/logo.jpg" height="50" alt="小蜜蜂兼职logo" /></a>
       <a class="u_user" href="__APP__/UserCenter">用户</a>
     </div>
@@ -84,8 +85,8 @@
           <a href="$url" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">$name<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             $info
-            <li><a href="/PublishJobs">发布兼职</a></li>
-            <li><a href="/ChangePasswd">修改密码</a></li>
+            <li><a href="__APP__/PublishJobs">发布兼职</a></li>
+            <li><a href="__APP__/ChangePasswd">修改密码</a></li>
             <li class="divider"></li>
             <li><a href="$logoutUrl">注销</a></li>
           </ul>
@@ -213,6 +214,7 @@ THINK;
         //获取字段值
 		
         var info = getFromInput('#login-form');
+		console.log(info);
         //checkbox判断
         var pwdmem = $("#pwdmem").is(":checked");
         info.pwdmem = pwdmem ? 1 : 0;

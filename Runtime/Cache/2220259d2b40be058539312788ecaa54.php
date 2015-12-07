@@ -4,17 +4,17 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>企业认证-小蜜蜂兼职</title>
-    <link href="/Public/xmf32.ico" type="image/x-icon" rel=icon />
-<link href="/Public/xmf32.ico" type="image/x-icon" rel="shortcut icon" />
+    <title>企业认证-小蜜蜂job</title>
+    <link href="__PUBLIC__/xmf32.ico" type="image/x-icon" rel=icon />
+<link href="__PUBLIC__/xmf32.ico" type="image/x-icon" rel="shortcut icon" />
 
 <link rel="stylesheet" href="http://cdn.staticfile.org/twitter-bootstrap/3.3.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="http://cdn.staticfile.org/twitter-bootstrap/3.3.1/css/bootstrap-theme.min.css">
 
-<script src="http://cdn.staticfile.org/jquery/2.1.1-rc2/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/jquery/1.11.1-rc2/jquery.min.js"></script>
 <script src="http://cdn.staticfile.org/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="/__GROUP__/css/common.css">
-<script src="/__GROUP__/js/common.js"></script>
+<link rel="stylesheet" href="__APP__/__GROUP__/css/common.css">
+<script src="__APP__/__GROUP__/js/common.js"></script>
     <link rel="stylesheet" type="text/css" href="/__GROUP__/css/webuploader.css">
     <script type="text/javascript" src="/__GROUP__/js/webuploader.min.js"></script>
     <style type="text/css">
@@ -31,13 +31,18 @@
 <nav class="navbar navbar-default">
   <div class="container">
     <div class="navbar-header">
+    	
+      <!--
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="" href="/"><img src="/Public/logo/logo.png" height="50" alt="小蜜蜂兼职logo" /></a>
+      -->
+      
+      <a class="" href="__APP__/"><img src="__APP__/Public/logo/logo.jpg" height="50" alt="小蜜蜂兼职logo" /></a>
+      <a class="u_user" href="__APP__/UserCenter">用户</a>
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -59,10 +64,10 @@
         <button type="submit" class="btn btn-default">搜索</button>
       </form>
       <ul class="nav navbar-nav sort-search">
-        <li class=""><a href="/SortSearch/search.html?q=q">分类查找</a></li>
+        <li class=""><a href="<?php echo U('SortSearch/search');?>">分类查找</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-      <?php $url = U("Index/index"); $logoutUrl = U("Logout/index"); $name = session("?username") ? session('username') : session('orgname'); $info = session("?uid") ? '<li><a href="/UserCenter">个人中心</a></li>' : '<li><a href="/OrgCenter">企业中心</a></li>'; $dropdown1 = <<<THINK
+      <?php $url = U("Index/index"); $logoutUrl = U("Logout/index"); $name = session("?username") ? session('username') : session('orgname'); $info = session("?uid") ? '<li><a href="__APP__/UserCenter">个人中心</a></li>' : '<li><a href="/OrgCenter">企业中心</a></li>'; $dropdown1 = <<<THINK
       	<li class="dropdown">
           <a href="$url" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">$name<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
@@ -240,9 +245,9 @@ THINK;
     <!--footer-->
 <div class="container">
   <hr />
-  <p class="text-center">小蜜蜂兼职</p>
-  <p class="my-info text-center"><a href="http://www.xiaomifengjob.com">首页</a>/<a href="<?php echo U("Advice/index");?>">投诉建议</a>/<a href="http://www.xiaomifengjob.com">关于小蜜蜂</a>/<a href="http://www.xiaomifengjob.com">联系我们</a></p>
-  <p class="copyright text-center">Copyright ©小蜜蜂网络 / 备案号：ICP备13008243号-1 / 地址：烟台市红旗中路</p>
+  <p class="text-center">梦海网络</p>
+  <p class="my-info text-center"><a href="__APP__/">首页</a>/<a href="<?php echo U("Advice/index");?>">投诉建议</a>/<a href="__APP__/">关于梦海网络</a>/<a href="http://www.xiaomifengjob.com">联系我们</a></p>
+  <p class="copyright text-center">Copyright © 梦海网络 / 备案号：<a style="color:#000;" href="http://www.miitbeian.gov.cn/">鲁ICP备15023958号</a></p><p class="copyright text-center"> 地址：烟台市红旗中路</p>
   <p class="hidden"><script src="http://s11.cnzz.com/z_stat.php?id=1255390287&web_id=1255390287" language="JavaScript"></script></p>
 </div>
     <!--./footer-->

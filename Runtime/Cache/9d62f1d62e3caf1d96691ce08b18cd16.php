@@ -58,7 +58,64 @@
             margin-left:6%;
         }
     }
-
+	.menu_channel{
+		width:100%;
+		border-bottom:1px solid #ddd;
+		height:40px;
+	}
+	.menu_channel a{
+		display:block;
+		float:left;
+		width:33.333%;
+		text-align:center;
+		padding-top:5px;
+		line-height:30px;
+		
+		}
+	.tjob{
+		margin-top:10px;
+		display:block;
+		width:100%;
+		height:88px;
+		border-bottom:1px solid #ddd;
+		text-decoration:none;
+		color:black;
+		}
+	.tjob_name{
+	
+		display:block;
+		width:100%;
+		height:30px;
+		padding-top:10px;
+		font-size:16px;
+		font-family:黑体;
+		}
+	.tjob_addressname,.tjob_time,.tjob_pv{
+		display:block;
+		width:100%;
+		font-size:10px;
+		font-family:微软雅黑;
+		color:#999;
+		margin-top:5px;
+		}
+	.tjob_money{
+		display:block;
+		width:35%;
+		height:30px;
+		font-size:12px;
+		font-family:微软雅黑;
+		color:#999;
+		float:right;
+		margin-top:28px;
+		text-align:center;
+		line-height:30px;
+		
+		}
+	.tjob_t{
+		float:left;
+		width:60%;
+		padding-left:20px;
+		}
     </style>
 </head>
 
@@ -76,8 +133,39 @@
         <span class="icon-bar"></span>
       </button>
       -->
+      <script type="text/javascript">
+
+        //平台、设备和操作系统
+        var system = {
+            win: false,
+            mac: false,
+            xll: false,
+            ipad:false
+        };
+        //检测平台
+        var p = navigator.platform;
+	
+		alert(div);
+        system.win = p.indexOf("Win") == 0;
+        system.mac = p.indexOf("Mac") == 0;
+        system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+        system.ipad = (navigator.userAgent.match(/iPad/i) != null)?true:false;
+        //跳转语句，如果是手机访问就自动跳转到wap.baidu.com页面
+        if (system.win || system.mac || system.xll||system.ipad) {
+			//div.style.display="none";
+			//alert("nihao");
+			$(".u_user").hide();
+ 			//window.location.href="http://www.xiaomifengjob.com";
+        } else {
+			//div.style.display="block";
+			//alert("nihao1");
+ 			$(".u_user").show();
+            //window.location.href = "";
+        }
+
+</script>
       <a class="" href="__APP__/"><img src="__APP__/Public/logo/logo.jpg" height="50" alt="小蜜蜂兼职logo" /></a>
-      <a class="u_user" href="__APP__/UserCenter">用户</a>
+      <a class="u_user" id="uuser" href="__APP__/UserCenter">用户</a>
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -107,8 +195,8 @@
           <a href="$url" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">$name<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             $info
-            <li><a href="/PublishJobs">发布兼职</a></li>
-            <li><a href="/ChangePasswd">修改密码</a></li>
+            <li><a href="__APP__/PublishJobs">发布兼职</a></li>
+            <li><a href="__APP__/ChangePasswd">修改密码</a></li>
             <li class="divider"></li>
             <li><a href="$logoutUrl">注销</a></li>
           </ul>
@@ -213,39 +301,64 @@ THINK;
                         </ul>
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane active" id="newest">
-                                <!--分类选择-->
+                            	<div class="menu_channel">
+                                	<a href="index.php?sort=<?php echo ($arr_sort["address"]); ?>">地点</a>
+                                	<a href="index.php?sort=<?php echo ($arr_sort["money"]); ?>">工资</a>
+                                    <a href="index.php?sort=<?php echo ($arr_sort["ctime"]); ?>">时间</a>
+                                </div>
+                                <!--
                                 <table class="table">
+                             	-->
+                                <!--分类选择
                                     <thead>
-                                            <td></td>
-                                            <td>
-                                        <a href="index.php?sort=<?php echo ($arr_sort["address"]); ?>">地点</a></td>
+                                            
+                                            <td><a href="index.php?sort=<?php echo ($arr_sort["address"]); ?>">地点</a></td>
                                             <td><a href="index.php?sort=<?php echo ($arr_sort["money"]); ?>">工资</a></td>
                                             
                                             <td><a href="index.php?sort=<?php echo ($arr_sort["ctime"]); ?>">时间</a></td>
-                                            <!--删掉的东西
+                                           
                                             <span class="glyphicon glyphicon-chevron-down"></span>
                                             <td><a href="index.php?sort=<?php echo ($arr_sort["pv"]); ?>">浏览量</a></td>
                                             
-                                            -->
+                                            
                                             
                                     </thead>
-                                <!--/分类选择-->
-                                <!-- 兼职列表 -->
-                                <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$job): $mod = ($i % 2 );++$i;?><tr>
-                                        <td><a href="<?php echo U('JobsInfo/index');?>?jid=<?php echo ($job["jid"]); ?>"><?php echo ($job["title"]); ?>
-                            
-                            <?php if(time()-$job['ctime'] <= 3600): ?><span class="label label-danger">New</span><?php endif; ?></a></td>
-                                        <td><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span><?php echo ($job["addressname"]); ?></td>
-                                        <td><span class="glyphicon glyphicon-yen" aria-hidden="true"></span><?php echo ($job["money"]); ?>元
-                                        <?php switch($job["money_style"]): case "1": ?>/小时<?php break;?>
-                                            <?php case "2": ?>/天<?php break;?>
-                                            <?php case "3": ?>/次<?php break; endswitch;?>
-                                        </td>
-                                        <td><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span><?php echo ($job["pv"]); ?></td>
-                                        <td><span class="glyphicon glyphicon-time"></span><?php echo (ftime($job["ctime"])); ?></td>
-                                    </tr><?php endforeach; endif; else: echo "" ;endif; ?>
-                                <!--./兼职列表-->
+                                -->
+                                <!-- 兼职列表 
+                                    <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$job): $mod = ($i % 2 );++$i;?><tr>
+                                            
+                                            <td><a href="<?php echo U('JobsInfo/index');?>?jid=<?php echo ($job["jid"]); ?>"><?php echo ($job["title"]); ?>
+                                <?php if(time()-$job['ctime'] <= 3600): ?><span class="label label-danger">New</span><?php endif; ?></a></td>
+                                            <td><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span><?php echo ($job["addressname"]); ?></td>
+                                            <td><span class="glyphicon glyphicon-yen" aria-hidden="true"></span><?php echo ($job["money"]); ?>元
+                                            <?php switch($job["money_style"]): case "1": ?>/小时<?php break;?>
+                                                <?php case "2": ?>/天<?php break;?>
+                                                <?php case "3": ?>/次<?php break; endswitch;?>
+                                            </td>
+                                            <td><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span><?php echo ($job["pv"]); ?></td>
+                                            <td><span class="glyphicon glyphicon-time"></span><?php echo (ftime($job["ctime"])); ?></td>
+                                        </tr><?php endforeach; endif; else: echo "" ;endif; ?>
+                                -->
+                                <!--
                                 </table>
+                             	-->
+                                <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$job): $mod = ($i % 2 );++$i;?><a class="tjob" href="<?php echo U('JobsInfo/index');?>?jid=<?php echo ($job["jid"]); ?>">
+                                         <div class="tjob_t">
+                                            <span class="tjob_name" ><?php echo ($job["title"]); ?>
+                                                <?php if(time()-$job['ctime'] <= 3600): ?><span class="label label-danger">New</span><?php endif; ?>
+                                            </span>
+                                            <span class="tjob_addressname"><?php echo ($job["addressname"]); ?></span>
+                                            
+                                            
+                                            <span class="tjob_time"><?php echo (ftime($job["ctime"])); ?></span>
+                                        </div>
+                                        <span class="tjob_money"><?php echo ($job["money"]); ?>元
+                                                <?php switch($job["money_style"]): case "1": ?>/小时<?php break;?>
+                                                    <?php case "2": ?>/天<?php break;?>
+                                                    <?php case "3": ?>/次<?php break; endswitch;?>
+                                        </span>
+
+                                    </a><?php endforeach; endif; else: echo "" ;endif; ?>
                             </div>
                             <nav>
                                 <ul class="pagination">

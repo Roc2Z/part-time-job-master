@@ -60,6 +60,7 @@
         <span class="icon-bar"></span>
       </button>
       -->
+      
       <a class="" href="__APP__/"><img src="__APP__/Public/logo/logo.jpg" height="50" alt="小蜜蜂兼职logo" /></a>
       <a class="u_user" href="__APP__/UserCenter">用户</a>
     </div>
@@ -208,7 +209,7 @@ THINK;
                 </form>
             </div>
             <div class="col-md-1"></div>
-            <!--<div class="col-md-4">
+            <div class="col-md-4">
                 <div class="panel panel-default">
     <div class="panel-heading">梦海网络</div>
 	<div class="panel-body">
@@ -227,7 +228,7 @@ THINK;
 		<pre>&emsp;&emsp;烟台梦海网络是由烟台大学生创办的新一代互联网公司，我们来自烟台各大高校，全部由90后组成，致力于打造全国大学生生活服务第一平台，我们会用饱满热情的态度服务广大大学生</pre>
 	</div>
 </div>
-            </div>-->
+            </div>
         </div>
         <!--end container-->
         <!--footer-->

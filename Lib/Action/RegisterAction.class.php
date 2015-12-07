@@ -17,6 +17,7 @@ class RegisterAction extends Action{
 	public function reg(){
 		//验证码
 		$this->confirmVcode();
+
 		$Reger;
 		if($this->isOrg()){
 			$Reger = D('Orgs');//orgs表
@@ -26,7 +27,8 @@ class RegisterAction extends Action{
 		//获取数据
 		$data['phone_num']  = $this->_post('phone_num');
 		$data['passwd'] = md5($this->_post('passwd'));
-		$data['ctime']  = time();		
+		$data['ctime']  = time();
+		
 		if($this->isOrg()){
 			$data['orgname']     = $this->_post('org');
 			$data['address']     = $this->_post('address');

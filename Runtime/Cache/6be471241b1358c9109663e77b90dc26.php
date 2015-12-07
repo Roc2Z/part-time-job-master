@@ -70,6 +70,7 @@
         <span class="icon-bar"></span>
       </button>
       -->
+      
       <a class="" href="__APP__/"><img src="__APP__/Public/logo/logo.jpg" height="50" alt="小蜜蜂兼职logo" /></a>
       <a class="u_user" href="__APP__/UserCenter">用户</a>
     </div>

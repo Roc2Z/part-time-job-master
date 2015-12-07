@@ -4,36 +4,18 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>搜索结果-梦海网络</title>
-    <link href="/Public/xmf32.ico" type="image/x-icon" rel=icon />
-<link href="/Public/xmf32.ico" type="image/x-icon" rel="shortcut icon" />
+    <title>修改密码-小蜜蜂job</title>
+    <link href="__PUBLIC__/xmf32.ico" type="image/x-icon" rel=icon />
+<link href="__PUBLIC__/xmf32.ico" type="image/x-icon" rel="shortcut icon" />
 
 <link rel="stylesheet" href="http://cdn.staticfile.org/twitter-bootstrap/3.3.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="http://cdn.staticfile.org/twitter-bootstrap/3.3.1/css/bootstrap-theme.min.css">
 
 <script src="http://cdn.staticfile.org/jquery/1.11.1-rc2/jquery.min.js"></script>
 <script src="http://cdn.staticfile.org/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="./__GROUP__/css/common.css">
-<script src="./__GROUP__/js/common.js"></script>
+<link rel="stylesheet" href="__APP__/__GROUP__/css/common.css">
+<script src="__APP__/__GROUP__/js/common.js"></script>
     <style type="text/css">
-    .red {
-        color: #F00;
-    }
-    
-    .panel-body {
-        position: relative;
-    }
-    
-    #login {
-        position: absolute;
-        right: 16px;
-        bottom: 16px;
-    }
-    
-    #verify>input {
-        display: inline;
-        width: 216px;
-    }
     </style>
 </head>
 
@@ -51,7 +33,9 @@
         <span class="icon-bar"></span>
       </button>
       -->
+      
       <a class="" href="__APP__/"><img src="__APP__/Public/logo/logo.jpg" height="50" alt="小蜜蜂兼职logo" /></a>
+      <a class="u_user" href="__APP__/UserCenter">用户</a>
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -76,13 +60,13 @@
         <li class=""><a href="<?php echo U('SortSearch/search');?>">分类查找</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-      <?php $url = U("Index/index"); $logoutUrl = U("Logout/index"); $name = session("?username") ? session('username') : session('orgname'); $info = session("?uid") ? '<li><a href="/UserCenter">个人中心</a></li>' : '<li><a href="/OrgCenter">企业中心</a></li>'; $dropdown1 = <<<THINK
+      <?php $url = U("Index/index"); $logoutUrl = U("Logout/index"); $name = session("?username") ? session('username') : session('orgname'); $info = session("?uid") ? '<li><a href="__APP__/UserCenter">个人中心</a></li>' : '<li><a href="/OrgCenter">企业中心</a></li>'; $dropdown1 = <<<THINK
       	<li class="dropdown">
           <a href="$url" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">$name<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             $info
-            <li><a href="/PublishJobs">发布兼职</a></li>
-            <li><a href="/ChangePasswd">修改密码</a></li>
+            <li><a href="__APP__/PublishJobs">发布兼职</a></li>
+            <li><a href="__APP__/ChangePasswd">修改密码</a></li>
             <li class="divider"></li>
             <li><a href="$logoutUrl">注销</a></li>
           </ul>
@@ -128,19 +112,32 @@ THINK;
   })();
 </script>
 <!--======导航条结束======--->
+    <!--container-->
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                <div class="alert alert-success">共搜索到<?php echo (($count)?($count): 0); ?>条</div>
-                <div class="panel panel-primary">
-                    <ul class="list-group">
-                        <?php if(isset($error_info)): ?><li class="list-group-item"><?php echo ($error_info); ?></li>
-                            <?php else: ?>
-                            <?php if(is_array($result)): $i = 0; $__LIST__ = $result;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$result): $mod = ($i % 2 );++$i;?><a class="list-group-item" href="<?php echo U('JobsInfo/index');?>?jid=<?php echo ($result["jid"]); ?>"><?php echo ($result["title"]); ?>&emsp;|&emsp;报酬：<?php echo ($result["money"]); ?>元&emsp;|&emsp;<?php echo ($result["addressname"]); ?>&emsp;|&emsp;<?php echo (ftime($result["ctime"])); ?></a><?php endforeach; endif; else: echo "" ;endif; endif; ?>
-                    </ul>
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-1">
+                        <form class="form-horizontal" action="">
+                            <label>旧密码：</label>
+                            <input class="form-control" name="old_passwd" />
+                            <label>新密码：</label>
+                            <input class="form-control" type="password" name="new_passwd" />
+                            <label>再输一遍新密码：</label>
+                            <input class="form-control" type="password" name="re_passwd" />
+                            <label>输入验证码：</label>
+                            <div class="" id="verify">
+                                <img src="<?php echo U('ChangePasswd/vCode');?>" />
+                                <button class="btn btn-primary" type="button">换一个</button>
+                            </div>
+                            <input class="form-control" name="vcode" />
+                            <button type="button" class="btn btn-primary" id="goto-submit">修改密码</button>
+                        </form>
+                    </div>
+                    <div class="col-md-4"></div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <!--<div class="col-md-4">
                 <div class="panel panel-default">
     <div class="panel-heading">梦海网络</div>
 	<div class="panel-body">
@@ -159,12 +156,12 @@ THINK;
 		<pre>&emsp;&emsp;烟台梦海网络是由烟台大学生创办的新一代互联网公司，我们来自烟台各大高校，全部由90后组成，致力于打造全国大学生生活服务第一平台，我们会用饱满热情的态度服务广大大学生</pre>
 	</div>
 </div>
-            </div>
+            </div>-->
         </div>
     </div>
     <!--./container-->
     <!--footer-->
-    <div class="container">
+<div class="container">
   <hr />
   <p class="text-center">梦海网络</p>
   <p class="my-info text-center"><a href="__APP__/">首页</a>/<a href="<?php echo U("Advice/index");?>">投诉建议</a>/<a href="__APP__/">关于梦海网络</a>/<a href="http://www.xiaomifengjob.com">联系我们</a></p>
@@ -172,7 +169,29 @@ THINK;
   <p class="hidden"><script src="http://s11.cnzz.com/z_stat.php?id=1255390287&web_id=1255390287" language="JavaScript"></script></p>
 </div>
     <!--./footer-->
-    <script>
+    <script type="text/javascript">
+    //刷新验证码
+    $("#verify>button").click(function() {
+        var ver_img = $("#verify>img");
+        ver_img.attr("src", "__APP__/Login/vCode?" + new Date().getTime());
+    });
+    $("#verify>img").click(function() {
+        $(this).attr("src", "__APP__/Login/vCode?" + new Date().getTime());
+    });
+
+
+    $("#goto-submit").on('click', function() {
+        var info = getFromInput(".form-horizontal");
+        console.log(info);
+        $.ajax({
+            url: "<?php echo U('ChangePasswd/change');?>",
+            data: info,
+            type: "POST",
+            success: function(data) {
+                alert(data.info);
+            }
+        });
+    });
     </script>
 </body>
 
