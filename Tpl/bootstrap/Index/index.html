@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>小蜜蜂job梦海网络</title>
+    <title>e企校——大学生兼职必备神器</title>
     <meta type="keywords" content="小蜜蜂job,小蜜蜂,大学生兼职神器,大学生兼职,鲁东大学,找兼职,大学生创业" />
     <meta type="descripton" content="小蜜蜂job是大学生自主创业项目，为在校大学生提供优质可靠的兼职">
     <include file="./Tpl/bootstrap/public/static.html" />
@@ -44,11 +44,7 @@
     .carousel-inner>.item>img{
         margin:0 auto;
     }
-    @media screen and (max-width: 600px){
-        .list-grid{
-            margin-left:6%;
-        }
-    }
+   
 	.menu_channel{
 		width:100%;
 		border-bottom:1px solid #ddd;
@@ -64,16 +60,14 @@
 		
 		}
 	.tjob{
-		margin-top:10px;
 		display:block;
 		width:100%;
-		height:88px;
+		height:75px;
 		border-bottom:1px solid #ddd;
 		text-decoration:none;
 		color:black;
 		}
 	.tjob_name{
-	
 		display:block;
 		width:100%;
 		height:30px;
@@ -90,22 +84,30 @@
 		margin-top:5px;
 		}
 	.tjob_money{
-		display:block;
-		width:35%;
-		height:30px;
-		font-size:12px;
-		font-family:微软雅黑;
-		color:#999;
-		float:right;
-		margin-top:28px;
-		text-align:center;
-		line-height:30px;
+		
 		
 		}
 	.tjob_t{
 		float:left;
 		width:60%;
 		padding-left:20px;
+		}
+	.tjob_l{
+		float:right;
+		padding-top:13px;
+		width:35%;
+		height:30px;
+		font-size:12px;
+		font-family:微软雅黑;
+		color:#999;
+		text-align:center;
+		
+		}
+	#content_job_menu{
+		margin-top:20px;
+		}
+	#panel_body_r{
+		padding:0px;
 		}
     </style>
 </head>
@@ -118,24 +120,28 @@
     <!--./banner-->
     <div class="container">
         <div class="row">
-            <div class="col-md-8" style="overflow:hidden;">
+            <div class="col-md-8" id="content_job_menu" style="overflow:hidden;">
                 
                 <div class="panel panel-default">
+                	<!--
                     <div class="panel-heading">兼职</div>
-                    <div class="panel-body">
-                        <!-- Nav tabs -->
+                    -->
+                    <div class="panel-body" id="panel_body_r">
+                        <!-- Nav tabs
                         <ul class="nav nav-tabs" role="tablist">
+                        -->
                             <!--
                             <li role="presentation" class="active"><a href="#newest">最近兼职工作</a></li>
                              
                             <li role="presentation"><a href="#assort" aria-controls="assort" role="tab" data-toggle="tab">分类查找</a></li> 
                             <li role="presentation"><a href="{:U("Resume/index")}">求职简历</a></li>
-                            -->
+                            
                         </ul>
+                        -->
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane active" id="newest">
                             	<div class="menu_channel">
-                                	<a href="index.php?sort={$arr_sort.address}">地点</a>
+                                	<a href="#">地点</a>
                                 	<a href="index.php?sort={$arr_sort.money}">工资</a>
                                     <a href="index.php?sort={$arr_sort.ctime}">时间</a>
                                 </div>
@@ -191,17 +197,17 @@
                                             </span>
                                             <span class="tjob_addressname">{$job.addressname}</span>
                                             
-                                            
-                                            <span class="tjob_time">{$job.ctime|ftime}</span>
                                         </div>
-                                        <span class="tjob_money">{$job.money}元
-                                                <switch name="job.money_style">
-                                                    <case value="1">/小时</case>
-                                                    <case value="2">/天</case>
-                                                    <case value="3">/次</case>
-                                                </switch>
-                                        </span>
-
+                                        <div class="tjob_l">
+                                            <span class="tjob_money">{$job.money}元
+                                                    <switch name="job.money_style">
+                                                        <case value="1">/小时</case>
+                                                        <case value="2">/天</case>
+                                                        <case value="3">/次</case>
+                                                    </switch>
+                                            </span>
+                                            <span class="tjob_time">{$job.begin_time|date="m月d日h:i",###}</span>
+										</div>
                                     </a>    
                                 </volist>
                             </div>

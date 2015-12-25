@@ -1,1 +1,0 @@
-<?php	return array ( 0 => 'aid', 1 => 'province', 2 => 'city', '_autoinc' => true, '_pk' => 'aid', '_type' => array ( 'aid' => 'int(255)', 'province' => 'varchar(12)', 'city' => 'varchar(12)', ), );?>

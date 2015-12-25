@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>小蜜蜂job梦海网络</title>
+    <title>e企校——大学生兼职必备神器</title>
     <meta type="keywords" content="小蜜蜂job,小蜜蜂,大学生兼职神器,大学生兼职,鲁东大学,找兼职,大学生创业" />
     <meta type="descripton" content="小蜜蜂job是大学生自主创业项目，为在校大学生提供优质可靠的兼职">
     <link href="__PUBLIC__/xmf32.ico" type="image/x-icon" rel=icon />
@@ -17,6 +17,7 @@
 <script src="http://cdn.staticfile.org/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="__APP__/__GROUP__/css/common.css">
 <script src="__APP__/__GROUP__/js/common.js"></script>
+
     <style type="text/css">
     #banner{
         width:auto;
@@ -53,11 +54,7 @@
     .carousel-inner>.item>img{
         margin:0 auto;
     }
-    @media screen and (max-width: 600px){
-        .list-grid{
-            margin-left:6%;
-        }
-    }
+   
 	.menu_channel{
 		width:100%;
 		border-bottom:1px solid #ddd;
@@ -73,16 +70,14 @@
 		
 		}
 	.tjob{
-		margin-top:10px;
 		display:block;
 		width:100%;
-		height:88px;
+		height:75px;
 		border-bottom:1px solid #ddd;
 		text-decoration:none;
 		color:black;
 		}
 	.tjob_name{
-	
 		display:block;
 		width:100%;
 		height:30px;
@@ -99,22 +94,30 @@
 		margin-top:5px;
 		}
 	.tjob_money{
-		display:block;
-		width:35%;
-		height:30px;
-		font-size:12px;
-		font-family:微软雅黑;
-		color:#999;
-		float:right;
-		margin-top:28px;
-		text-align:center;
-		line-height:30px;
+		
 		
 		}
 	.tjob_t{
 		float:left;
 		width:60%;
 		padding-left:20px;
+		}
+	.tjob_l{
+		float:right;
+		padding-top:13px;
+		width:35%;
+		height:30px;
+		font-size:12px;
+		font-family:微软雅黑;
+		color:#999;
+		text-align:center;
+		
+		}
+	#content_job_menu{
+		margin-top:20px;
+		}
+	#panel_body_r{
+		padding:0px;
 		}
     </style>
 </head>
@@ -124,7 +127,7 @@
 <nav class="navbar navbar-default">
   <div class="container">
     <div class="navbar-header">
-    	
+	
       <!--
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
         <span class="sr-only">Toggle navigation</span>
@@ -133,54 +136,24 @@
         <span class="icon-bar"></span>
       </button>
       -->
-      <script type="text/javascript">
-
-        //平台、设备和操作系统
-        var system = {
-            win: false,
-            mac: false,
-            xll: false,
-            ipad:false
-        };
-        //检测平台
-        var p = navigator.platform;
-	
-		alert(div);
-        system.win = p.indexOf("Win") == 0;
-        system.mac = p.indexOf("Mac") == 0;
-        system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
-        system.ipad = (navigator.userAgent.match(/iPad/i) != null)?true:false;
-        //跳转语句，如果是手机访问就自动跳转到wap.baidu.com页面
-        if (system.win || system.mac || system.xll||system.ipad) {
-			//div.style.display="none";
-			//alert("nihao");
-			$(".u_user").hide();
- 			//window.location.href="http://www.xiaomifengjob.com";
-        } else {
-			//div.style.display="block";
-			//alert("nihao1");
- 			$(".u_user").show();
-            //window.location.href = "";
-        }
-
-</script>
-      <a class="" href="__APP__/"><img src="__APP__/Public/logo/logo.jpg" height="50" alt="小蜜蜂兼职logo" /></a>
-      <a class="u_user" id="uuser" href="__APP__/UserCenter">用户</a>
-    </div>
-
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class=""><a href="<?php echo U('ChangeCity/index');?>">切换城市 [<?php echo session("?city") ? session("city") : "烟台市" ?>]</a></li>
+      
+      <a class="web_logo" href="__APP__/"><img src="__APP__/Public/logo/logo.jpg" height="50" alt="小蜜蜂兼职logo" /></a>
+      <!--
+      <ul class="city_name">
+        <li class=""><a href="<?php echo U('ChangeCity/index');?>">[<?php echo session("?city") ? session("city") : "烟台市" ?>]</a></li>
       </ul>
-
+      -->
+		<!--
       <form class="navbar-form navbar-left" role="search" method="get" action="<?php echo U('Search/s');?>">
         <div class="input-group">
+        	
           <div class="input-group-btn">
           <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span>兼职</span><span class="caret"></span></button>
           <ul class="dropdown-menu" role="menu" id="search-f">
             <li><a href="javascript:void(0)">用户</a></li>
           </ul>
         </div>
+        
           <input class="hidden" type="test" name="sf" value="job" id="hidden-f"/>
           <input type="text" class="form-control" name="wd" placeholder="兼职/用户...">
         </div>
@@ -189,8 +162,9 @@
       <ul class="nav navbar-nav sort-search">
         <li class=""><a href="<?php echo U('SortSearch/search');?>">分类查找</a></li>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
-      <?php $url = U("Index/index"); $logoutUrl = U("Logout/index"); $name = session("?username") ? session('username') : session('orgname'); $info = session("?uid") ? '<li><a href="__APP__/UserCenter">个人中心</a></li>' : '<li><a href="/OrgCenter">企业中心</a></li>'; $dropdown1 = <<<THINK
+      -->
+      <ul class="user_position">
+      <?php $url = U("Index/index"); $logoutUrl = U("Logout/index"); $name = session("?username") ? session('username') : session('orgname'); $info = session("?uid") ? '<li><a href="__APP__/UserCenter">个人中心</a></li>' : '<li><a href="__APP__/OrgCenter">企业中心</a></li>'; $dropdown1 = <<<THINK
       	<li class="dropdown">
           <a href="$url" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">$name<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
@@ -208,7 +182,7 @@ THINK;
           <a href="$url" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">$name<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             $info
-            <li><a href="/ChangePasswd">修改密码</a></li>
+            
             <li class="divider"></li>
             <li><a href="$logoutUrl">注销</a></li>
           </ul>
@@ -285,24 +259,28 @@ THINK;
     <!--./banner-->
     <div class="container">
         <div class="row">
-            <div class="col-md-8" style="overflow:hidden;">
+            <div class="col-md-8" id="content_job_menu" style="overflow:hidden;">
                 
                 <div class="panel panel-default">
+                	<!--
                     <div class="panel-heading">兼职</div>
-                    <div class="panel-body">
-                        <!-- Nav tabs -->
+                    -->
+                    <div class="panel-body" id="panel_body_r">
+                        <!-- Nav tabs
                         <ul class="nav nav-tabs" role="tablist">
+                        -->
                             <!--
                             <li role="presentation" class="active"><a href="#newest">最近兼职工作</a></li>
                              
                             <li role="presentation"><a href="#assort" aria-controls="assort" role="tab" data-toggle="tab">分类查找</a></li> 
                             <li role="presentation"><a href="<?php echo U("Resume/index");?>">求职简历</a></li>
-                            -->
+                            
                         </ul>
+                        -->
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane active" id="newest">
                             	<div class="menu_channel">
-                                	<a href="index.php?sort=<?php echo ($arr_sort["address"]); ?>">地点</a>
+                                	<a href="#">地点</a>
                                 	<a href="index.php?sort=<?php echo ($arr_sort["money"]); ?>">工资</a>
                                     <a href="index.php?sort=<?php echo ($arr_sort["ctime"]); ?>">时间</a>
                                 </div>
@@ -349,15 +327,15 @@ THINK;
                                             </span>
                                             <span class="tjob_addressname"><?php echo ($job["addressname"]); ?></span>
                                             
-                                            
-                                            <span class="tjob_time"><?php echo (ftime($job["ctime"])); ?></span>
                                         </div>
-                                        <span class="tjob_money"><?php echo ($job["money"]); ?>元
-                                                <?php switch($job["money_style"]): case "1": ?>/小时<?php break;?>
-                                                    <?php case "2": ?>/天<?php break;?>
-                                                    <?php case "3": ?>/次<?php break; endswitch;?>
-                                        </span>
-
+                                        <div class="tjob_l">
+                                            <span class="tjob_money"><?php echo ($job["money"]); ?>元
+                                                    <?php switch($job["money_style"]): case "1": ?>/小时<?php break;?>
+                                                        <?php case "2": ?>/天<?php break;?>
+                                                        <?php case "3": ?>/次<?php break; endswitch;?>
+                                            </span>
+                                            <span class="tjob_time"><?php echo (date("m月d日h:i",$job["begin_time"])); ?></span>
+										</div>
                                     </a><?php endforeach; endif; else: echo "" ;endif; ?>
                             </div>
                             <nav>
@@ -396,10 +374,10 @@ THINK;
     <!--end container-->
     <!--footer-->
 <div class="container">
-  <hr />
-  <p class="text-center">梦海网络</p>
-  <p class="my-info text-center"><a href="__APP__/">首页</a>/<a href="<?php echo U("Advice/index");?>">投诉建议</a>/<a href="__APP__/">关于梦海网络</a>/<a href="http://www.xiaomifengjob.com">联系我们</a></p>
-  <p class="copyright text-center">Copyright © 梦海网络 / 备案号：<a style="color:#000;" href="http://www.miitbeian.gov.cn/">鲁ICP备15023958号</a></p><p class="copyright text-center"> 地址：烟台市红旗中路</p>
+
+  <!--<p class="text-center">梦海网络</p>-->
+  <p class="my-info text-center"><a href="__APP__/">首页</a>/<a href="<?php echo U("Advice/index");?>">投诉建议</a>/<a href="__APP__/">关于我们</a>/<a href="http://www.xiaomifengjob.com">联系我们</a></p>
+  <p class="copyright text-center">Copyright © 梦海网络 / 备案号：<a style="color:#000;" href="http://www.miitbeian.gov.cn/">鲁ICP备15023958号</a></p><!--<p class="copyright text-center"> 地址：烟台市红旗中路</p>-->
   <p class="hidden"><script src="http://s11.cnzz.com/z_stat.php?id=1255390287&web_id=1255390287" language="JavaScript"></script></p>
 </div>
     <!--footer-end-->

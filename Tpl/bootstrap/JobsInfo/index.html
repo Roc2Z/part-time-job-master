@@ -4,14 +4,21 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>{$list.title}-梦海网络</title>
+    <title>{$list.title}-e企校</title>
     <include file="./Tpl/bootstrap/public/static.html" />
     <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=8d8574dfcfd097659736c026a6921ca5"></script>
     <style type="text/css">
+	.container{
+		padding-left:0px;
+		}
     .panel-body {
         position: relative;
+		
     }
-    
+    .panel-body h3{
+		margin-top:0px;
+		margin-left:10px;
+		}
     .form-group a.login {
         position: relative;
         top: 32px;
@@ -34,10 +41,35 @@
     }
     .tab-content{
       margin-top:20px;
+	  font-family:微软雅黑;
+	  font-size:14px;
     }
     #mapContainer{
       height:500px;
     }
+	.row{
+		font-family:微软雅黑;
+		margin-left:-3px;
+		}
+	.info_menu{
+		
+		}
+	.info_job{
+		list-style:none;
+		padding-left:0;
+		font-family:微软雅黑;
+		font-size:14px;
+		
+		}
+	.job_content{
+		list-style:none;
+		margin-top:5px;
+		}
+	#job_recording{
+		font-family:微软雅黑;
+		font-size:14px;
+		}
+	
     </style>
 </head>
 
@@ -56,6 +88,8 @@
                             <h3>{$list.title}</h3>
                         </if>
                         <div class="row">
+                        	
+                        
                             <div class="col-md-3"><span class="glyphicon glyphicon-time" aria-hidden="true"></span>&nbsp;{$list.ctime|date="m月d日 h:i",###}发布</div>
                             <div class="col-md-3"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>&nbsp;{$list.pv}次浏览</div>
                             <div class="col-md-3"><span class="glyphicon glyphicon-folder-close" aria-hidden="true"></span>&nbsp;{$list.current_peo}人已申请</div>
@@ -73,58 +107,67 @@
                                 <else />
                                 <span class="glyphicon glyphicon-ok-sign vlded-color"></span><span class="vlded-color">已认证</span>
                             </if>
+                            <!--
                             <div class="bdsharebuttonbox" style="float:right;"><a href="#" class="bds_more" data-cmd="more"></a><a title="分享到QQ空间" href="#" class="bds_qzone" data-cmd="qzone"></a><a title="分享到新浪微博" href="#" class="bds_tsina" data-cmd="tsina"></a><a title="分享到腾讯微博" href="#" class="bds_tqq" data-cmd="tqq"></a><a title="分享到人人网" href="#" class="bds_renren" data-cmd="renren"></a><a title="分享到微信" href="#" class="bds_weixin" data-cmd="weixin"></a></div>
 <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"#小蜜蜂的兼职分享#","bdMini":"2","bdMiniList":false,"bdPic":"http://test.xiaomifengjob.com/Public/xmf_share.png","bdStyle":"0","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
                         </div>
+                        	-->
                         <!--基本信息-->
                         <div class="rows clearfix">
-                            <div class="col-md-4">
-                            <ul class="list-group">
-                                <li class="list-group-item">工资待遇：{$list.money}
+                            <div class="info_menu">
+                            <ul class="info_job">
+                                <li class="job_content">工资待遇：{$list.money}
                                         <switch name="list.money_style">
                                             <case value="1">元每小时</case>
                                             <case value="2">元每天</case>
                                             <case value="3">元每次</case>
                                             <default />元
                                         </switch></li>
-                                        <li class="list-group-item">招聘人数：{$list.want_peo}
+                                        <li class="job_content">招聘人数：{$list.want_peo}
                                         <switch name="list.peo_style">
                                             <case value="1">个人</case>
                                             <case value="2">人左右</case>
                                             <default />个人
                                         </switch></li>
-                                        <li class="list-group-item">到岗时间：{$list.begin_time|date="m月d日h:i",###}</li>
-                                        <li class="list-group-item">工作时长：{$list.work_time}小时</li>
-                                        <li class="list-group-item">联系人：{$list.leader}<small>（联系我时，请说是在小蜜蜂上看到的）</small></li>
-                                        <li class="list-group-item">联系电话：
+                                        <li class="job_content">到岗时间：{$list.begin_time|date="m月d日h:i",###}</li>
+                                        <li class="job_content">工作时长：{$list.work_time}小时</li>
+                                        <li class="job_content">联系人：{$list.leader}<small>（联系我时，请说是在小蜜蜂上看到的）</small></li>
+                                        <li class="job_content">联系电话：
                                         <if condition="$a_tourist">
                                             {$a_tourist}
                                         <else />
                                             <img src="{:U("JobsInfo/generatePhoneImage")}" />
                                         </if>
                                         </li>
-                                        <li class="list-group-item">
+                                        <li class="job_content">
                                         结算方式：
                                         <switch name="list.pay_way">
                                             <case value="1">支付宝</case>
                                             <case value="2">银行卡</case>
                                             <case value="3">现金</case>
                                         </switch></li>
+										<!--
                                         <li class="list-group-item">工作地址：{$list.addressname}</li>
+										-->
                             </ul>
                             </div>
+							<!--
                             <div class="col-md-6"><div id="mapContainer" style="width:100%;height:350px;" class="pull-right"></div></div>
+							-->
                         </div>
                         <!--./基本信息-->
+                        <!--
                         <button type="button" class="btn btn-primary btn-lg" id="goto-apply">申请此兼职</button>&nbsp;(同时投递简历)
-
+						-->
                         <hr />
                         <div role="tabpanel">
                             <!-- Nav tabs -->
-                            <ul class="nav nav-tabs" role="tablist">
-                                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">兼职详情</a></li>
+                            <ul class="nav nav-tabs" role="tablist" id="job_recording">
+                                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">兼职详情</a></li>					
+                                <!--
                                 <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">公司介绍</a></li>
-                                <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">公司评价</a></li>
+                                <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">公司评价</a></li>						
+                                -->
                                 <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">申请记录</a></li>
                             </ul>
                             <!-- Tab panes -->
@@ -219,29 +262,36 @@
     </div>
     <!-- /.modal -->
     <!--./container-->
-    <!--footer-->
+    <!--footer
     <include file="./Tpl/bootstrap/public/footer.html" />
+    -->
     <!--/footer-->
+    <include file="./Tpl/bootstrap/public/footer_menu.html" />
     <script type="text/javascript">
     //申请
     $("#goto-apply").click(function() {
-        $.ajax({
-            url: "{:U('ApplyJob/apply')}",
-            success: function(data) {
-                var i = "<a href=\"{:U("UserCenter/PayInfo")}\" target=\"_blank\">去填写</a>";
-                if(data.data == 1){
-                    data.info += i;
-                }else if(data.data ==4){
-                    data.info += '<br /><small>(为了让您的申请可以被及时看到，请及时联系一下兼职的发布者)</small>';
-                }
-                $("#m-payway .modal-body").html(data.info);
-                $("#m-payway").modal('show');
-            },
-            error:function(){
-                $("#m-payway .modal-body").text("申请失败,请检查网络状况是否良好，稍后再试");
-                $("#m-payway").modal('show');
-            }
-        });
+		like=window.confirm("同时提交简历");
+　　　		if(like==true){
+			$.ajax({
+				url: "{:U('ApplyJob/apply')}",
+				success: function(data) {
+					var i = "<a href=\"{:U("UserCenter/PayInfo")}\" target=\"_blank\">去填写</a>";
+					if(data.data == 1){
+						data.info += i;
+					}else if(data.data ==4){
+						data.info += '<br /><small>(为了让您的申请可以被及时看到，请及时联系一下兼职的发布者)</small>';
+					}
+					$("#m-payway .modal-body").html(data.info);
+					$("#m-payway").modal('show');
+				},
+				error:function(){
+					$("#m-payway .modal-body").text("申请失败,请检查网络状况是否良好，稍后再试");
+					$("#m-payway").modal('show');
+				}
+			});
+		}else{
+			
+		}
     });
     </script>
     <script type="text/javascript">

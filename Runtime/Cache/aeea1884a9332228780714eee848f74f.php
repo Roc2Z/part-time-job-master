@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title><?php echo ($list["title"]); ?>-梦海网络</title>
+    <title><?php echo ($list["title"]); ?>-e企校</title>
     <link href="__PUBLIC__/xmf32.ico" type="image/x-icon" rel=icon />
 <link href="__PUBLIC__/xmf32.ico" type="image/x-icon" rel="shortcut icon" />
 
@@ -15,12 +15,20 @@
 <script src="http://cdn.staticfile.org/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="__APP__/__GROUP__/css/common.css">
 <script src="__APP__/__GROUP__/js/common.js"></script>
+
     <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=8d8574dfcfd097659736c026a6921ca5"></script>
     <style type="text/css">
+	.container{
+		padding-left:0px;
+		}
     .panel-body {
         position: relative;
+		
     }
-    
+    .panel-body h3{
+		margin-top:0px;
+		margin-left:10px;
+		}
     .form-group a.login {
         position: relative;
         top: 32px;
@@ -43,10 +51,35 @@
     }
     .tab-content{
       margin-top:20px;
+	  font-family:微软雅黑;
+	  font-size:14px;
     }
     #mapContainer{
       height:500px;
     }
+	.row{
+		font-family:微软雅黑;
+		margin-left:-3px;
+		}
+	.info_menu{
+		
+		}
+	.info_job{
+		list-style:none;
+		padding-left:0;
+		font-family:微软雅黑;
+		font-size:14px;
+		
+		}
+	.job_content{
+		list-style:none;
+		margin-top:5px;
+		}
+	#job_recording{
+		font-family:微软雅黑;
+		font-size:14px;
+		}
+	
     </style>
 </head>
 
@@ -55,7 +88,7 @@
 <nav class="navbar navbar-default">
   <div class="container">
     <div class="navbar-header">
-    	
+	
       <!--
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
         <span class="sr-only">Toggle navigation</span>
@@ -65,23 +98,23 @@
       </button>
       -->
       
-      <a class="" href="__APP__/"><img src="__APP__/Public/logo/logo.jpg" height="50" alt="小蜜蜂兼职logo" /></a>
-      <a class="u_user" href="__APP__/UserCenter">用户</a>
-    </div>
-
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class=""><a href="<?php echo U('ChangeCity/index');?>">切换城市 [<?php echo session("?city") ? session("city") : "烟台市" ?>]</a></li>
+      <a class="web_logo" href="__APP__/"><img src="__APP__/Public/logo/logo.jpg" height="50" alt="小蜜蜂兼职logo" /></a>
+      <!--
+      <ul class="city_name">
+        <li class=""><a href="<?php echo U('ChangeCity/index');?>">[<?php echo session("?city") ? session("city") : "烟台市" ?>]</a></li>
       </ul>
-
+      -->
+		<!--
       <form class="navbar-form navbar-left" role="search" method="get" action="<?php echo U('Search/s');?>">
         <div class="input-group">
+        	
           <div class="input-group-btn">
           <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span>兼职</span><span class="caret"></span></button>
           <ul class="dropdown-menu" role="menu" id="search-f">
             <li><a href="javascript:void(0)">用户</a></li>
           </ul>
         </div>
+        
           <input class="hidden" type="test" name="sf" value="job" id="hidden-f"/>
           <input type="text" class="form-control" name="wd" placeholder="兼职/用户...">
         </div>
@@ -90,8 +123,9 @@
       <ul class="nav navbar-nav sort-search">
         <li class=""><a href="<?php echo U('SortSearch/search');?>">分类查找</a></li>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
-      <?php $url = U("Index/index"); $logoutUrl = U("Logout/index"); $name = session("?username") ? session('username') : session('orgname'); $info = session("?uid") ? '<li><a href="__APP__/UserCenter">个人中心</a></li>' : '<li><a href="/OrgCenter">企业中心</a></li>'; $dropdown1 = <<<THINK
+      -->
+      <ul class="user_position">
+      <?php $url = U("Index/index"); $logoutUrl = U("Logout/index"); $name = session("?username") ? session('username') : session('orgname'); $info = session("?uid") ? '<li><a href="__APP__/UserCenter">个人中心</a></li>' : '<li><a href="__APP__/OrgCenter">企业中心</a></li>'; $dropdown1 = <<<THINK
       	<li class="dropdown">
           <a href="$url" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">$name<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
@@ -109,7 +143,7 @@ THINK;
           <a href="$url" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">$name<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             $info
-            <li><a href="/ChangePasswd">修改密码</a></li>
+            
             <li class="divider"></li>
             <li><a href="$logoutUrl">注销</a></li>
           </ul>
@@ -154,6 +188,8 @@ THINK;
                             <?php else: ?>
                             <h3><?php echo ($list["title"]); ?></h3><?php endif; ?>
                         <div class="row">
+                        	
+                        
                             <div class="col-md-3"><span class="glyphicon glyphicon-time" aria-hidden="true"></span>&nbsp;<?php echo (date("m月d日 h:i",$list["ctime"])); ?>发布</div>
                             <div class="col-md-3"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>&nbsp;<?php echo ($list["pv"]); ?>次浏览</div>
                             <div class="col-md-3"><span class="glyphicon glyphicon-folder-close" aria-hidden="true"></span>&nbsp;<?php echo ($list["current_peo"]); ?>人已申请</div>
@@ -169,50 +205,59 @@ THINK;
                             <?php if($list["is_validate"] == 0): ?><span class="glyphicon glyphicon-question-sign nvlded-color"></span><span class="nvlded-color">未认证</span>
                                 <?php else: ?>
                                 <span class="glyphicon glyphicon-ok-sign vlded-color"></span><span class="vlded-color">已认证</span><?php endif; ?>
+                            <!--
                             <div class="bdsharebuttonbox" style="float:right;"><a href="#" class="bds_more" data-cmd="more"></a><a title="分享到QQ空间" href="#" class="bds_qzone" data-cmd="qzone"></a><a title="分享到新浪微博" href="#" class="bds_tsina" data-cmd="tsina"></a><a title="分享到腾讯微博" href="#" class="bds_tqq" data-cmd="tqq"></a><a title="分享到人人网" href="#" class="bds_renren" data-cmd="renren"></a><a title="分享到微信" href="#" class="bds_weixin" data-cmd="weixin"></a></div>
 <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"#小蜜蜂的兼职分享#","bdMini":"2","bdMiniList":false,"bdPic":"http://test.xiaomifengjob.com/Public/xmf_share.png","bdStyle":"0","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
                         </div>
+                        	-->
                         <!--基本信息-->
                         <div class="rows clearfix">
-                            <div class="col-md-4">
-                            <ul class="list-group">
-                                <li class="list-group-item">工资待遇：<?php echo ($list["money"]); ?>
+                            <div class="info_menu">
+                            <ul class="info_job">
+                                <li class="job_content">工资待遇：<?php echo ($list["money"]); ?>
                                         <?php switch($list["money_style"]): case "1": ?>元每小时<?php break;?>
                                             <?php case "2": ?>元每天<?php break;?>
                                             <?php case "3": ?>元每次<?php break;?>
                                             <?php default: ?>元<?php endswitch;?></li>
-                                        <li class="list-group-item">招聘人数：<?php echo ($list["want_peo"]); ?>
+                                        <li class="job_content">招聘人数：<?php echo ($list["want_peo"]); ?>
                                         <?php switch($list["peo_style"]): case "1": ?>个人<?php break;?>
                                             <?php case "2": ?>人左右<?php break;?>
                                             <?php default: ?>个人<?php endswitch;?></li>
-                                        <li class="list-group-item">到岗时间：<?php echo (date("m月d日h:i",$list["begin_time"])); ?></li>
-                                        <li class="list-group-item">工作时长：<?php echo ($list["work_time"]); ?>小时</li>
-                                        <li class="list-group-item">联系人：<?php echo ($list["leader"]); ?><small>（联系我时，请说是在小蜜蜂上看到的）</small></li>
-                                        <li class="list-group-item">联系电话：
+                                        <li class="job_content">到岗时间：<?php echo (date("m月d日h:i",$list["begin_time"])); ?></li>
+                                        <li class="job_content">工作时长：<?php echo ($list["work_time"]); ?>小时</li>
+                                        <li class="job_content">联系人：<?php echo ($list["leader"]); ?><small>（联系我时，请说是在小蜜蜂上看到的）</small></li>
+                                        <li class="job_content">联系电话：
                                         <?php if($a_tourist): echo ($a_tourist); ?>
                                         <?php else: ?>
                                             <img src="<?php echo U("JobsInfo/generatePhoneImage");?>" /><?php endif; ?>
                                         </li>
-                                        <li class="list-group-item">
+                                        <li class="job_content">
                                         结算方式：
                                         <?php switch($list["pay_way"]): case "1": ?>支付宝<?php break;?>
                                             <?php case "2": ?>银行卡<?php break;?>
                                             <?php case "3": ?>现金<?php break; endswitch;?></li>
+										<!--
                                         <li class="list-group-item">工作地址：<?php echo ($list["addressname"]); ?></li>
+										-->
                             </ul>
                             </div>
+							<!--
                             <div class="col-md-6"><div id="mapContainer" style="width:100%;height:350px;" class="pull-right"></div></div>
+							-->
                         </div>
                         <!--./基本信息-->
+                        <!--
                         <button type="button" class="btn btn-primary btn-lg" id="goto-apply">申请此兼职</button>&nbsp;(同时投递简历)
-
+						-->
                         <hr />
                         <div role="tabpanel">
                             <!-- Nav tabs -->
-                            <ul class="nav nav-tabs" role="tablist">
-                                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">兼职详情</a></li>
+                            <ul class="nav nav-tabs" role="tablist" id="job_recording">
+                                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">兼职详情</a></li>					
+                                <!--
                                 <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">公司介绍</a></li>
-                                <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">公司评价</a></li>
+                                <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">公司评价</a></li>						
+                                -->
                                 <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">申请记录</a></li>
                             </ul>
                             <!-- Tab panes -->
@@ -312,35 +357,48 @@ THINK;
     </div>
     <!-- /.modal -->
     <!--./container-->
-    <!--footer-->
+    <!--footer
     <div class="container">
-  <hr />
-  <p class="text-center">梦海网络</p>
-  <p class="my-info text-center"><a href="__APP__/">首页</a>/<a href="<?php echo U("Advice/index");?>">投诉建议</a>/<a href="__APP__/">关于梦海网络</a>/<a href="http://www.xiaomifengjob.com">联系我们</a></p>
-  <p class="copyright text-center">Copyright © 梦海网络 / 备案号：<a style="color:#000;" href="http://www.miitbeian.gov.cn/">鲁ICP备15023958号</a></p><p class="copyright text-center"> 地址：烟台市红旗中路</p>
+
+  <!--<p class="text-center">梦海网络</p>-->
+  <p class="my-info text-center"><a href="__APP__/">首页</a>/<a href="<?php echo U("Advice/index");?>">投诉建议</a>/<a href="__APP__/">关于我们</a>/<a href="http://www.xiaomifengjob.com">联系我们</a></p>
+  <p class="copyright text-center">Copyright © 梦海网络 / 备案号：<a style="color:#000;" href="http://www.miitbeian.gov.cn/">鲁ICP备15023958号</a></p><!--<p class="copyright text-center"> 地址：烟台市红旗中路</p>-->
   <p class="hidden"><script src="http://s11.cnzz.com/z_stat.php?id=1255390287&web_id=1255390287" language="JavaScript"></script></p>
 </div>
+    -->
     <!--/footer-->
+    
+<ul class="footer_menu" id="footer_menu">
+	<li><a id="goto-apply" class="footer_menu_left" href="#">申请兼职</a></li>
+	<li><a href="tel:<?php echo session("phone") ?>">拨打电话</a></li>
+
+</ul>
+
     <script type="text/javascript">
     //申请
     $("#goto-apply").click(function() {
-        $.ajax({
-            url: "<?php echo U('ApplyJob/apply');?>",
-            success: function(data) {
-                var i = "<a href=\"<?php echo U("UserCenter/PayInfo");?>\" target=\"_blank\">去填写</a>";
-                if(data.data == 1){
-                    data.info += i;
-                }else if(data.data ==4){
-                    data.info += '<br /><small>(为了让您的申请可以被及时看到，请及时联系一下兼职的发布者)</small>';
-                }
-                $("#m-payway .modal-body").html(data.info);
-                $("#m-payway").modal('show');
-            },
-            error:function(){
-                $("#m-payway .modal-body").text("申请失败,请检查网络状况是否良好，稍后再试");
-                $("#m-payway").modal('show');
-            }
-        });
+		like=window.confirm("同时提交简历");
+　　　		if(like==true){
+			$.ajax({
+				url: "<?php echo U('ApplyJob/apply');?>",
+				success: function(data) {
+					var i = "<a href=\"<?php echo U("UserCenter/PayInfo");?>\" target=\"_blank\">去填写</a>";
+					if(data.data == 1){
+						data.info += i;
+					}else if(data.data ==4){
+						data.info += '<br /><small>(为了让您的申请可以被及时看到，请及时联系一下兼职的发布者)</small>';
+					}
+					$("#m-payway .modal-body").html(data.info);
+					$("#m-payway").modal('show');
+				},
+				error:function(){
+					$("#m-payway .modal-body").text("申请失败,请检查网络状况是否良好，稍后再试");
+					$("#m-payway").modal('show');
+				}
+			});
+		}else{
+			
+		}
     });
     </script>
     <script type="text/javascript">

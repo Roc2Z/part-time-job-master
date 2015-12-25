@@ -5,6 +5,8 @@
  * @copyright 2015
  */
 
+
+
 define('APP_NAME','兼职平台');
 define('APP_PATH','./');
 

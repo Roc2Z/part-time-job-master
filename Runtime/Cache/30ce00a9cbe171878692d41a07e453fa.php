@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title><?php echo ($userinfo["username"]); ?>的简历-小蜜蜂job</title>
+  <title><?php echo ($userinfo["username"]); ?>的简历-e企校</title>
 
 <link href="__PUBLIC__/xmf32.ico" type="image/x-icon" rel=icon />
 <link href="__PUBLIC__/xmf32.ico" type="image/x-icon" rel="shortcut icon" />
@@ -15,6 +15,7 @@
 <script src="http://cdn.staticfile.org/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="__APP__/__GROUP__/css/common.css">
 <script src="__APP__/__GROUP__/js/common.js"></script>
+
 <script type="text/javascript" src="/__GROUP__/js/fullAvatarEditor.js"></script>
 <script type="text/javascript" src="/__GROUP__/js/swfobject.js"></script>
 <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=8d8574dfcfd097659736c026a6921ca5"></script>
@@ -42,7 +43,7 @@
 <nav class="navbar navbar-default">
   <div class="container">
     <div class="navbar-header">
-    	
+	
       <!--
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
         <span class="sr-only">Toggle navigation</span>
@@ -52,23 +53,23 @@
       </button>
       -->
       
-      <a class="" href="__APP__/"><img src="__APP__/Public/logo/logo.jpg" height="50" alt="小蜜蜂兼职logo" /></a>
-      <a class="u_user" href="__APP__/UserCenter">用户</a>
-    </div>
-
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class=""><a href="<?php echo U('ChangeCity/index');?>">切换城市 [<?php echo session("?city") ? session("city") : "烟台市" ?>]</a></li>
+      <a class="web_logo" href="__APP__/"><img src="__APP__/Public/logo/logo.jpg" height="50" alt="小蜜蜂兼职logo" /></a>
+      <!--
+      <ul class="city_name">
+        <li class=""><a href="<?php echo U('ChangeCity/index');?>">[<?php echo session("?city") ? session("city") : "烟台市" ?>]</a></li>
       </ul>
-
+      -->
+		<!--
       <form class="navbar-form navbar-left" role="search" method="get" action="<?php echo U('Search/s');?>">
         <div class="input-group">
+        	
           <div class="input-group-btn">
           <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span>兼职</span><span class="caret"></span></button>
           <ul class="dropdown-menu" role="menu" id="search-f">
             <li><a href="javascript:void(0)">用户</a></li>
           </ul>
         </div>
+        
           <input class="hidden" type="test" name="sf" value="job" id="hidden-f"/>
           <input type="text" class="form-control" name="wd" placeholder="兼职/用户...">
         </div>
@@ -77,14 +78,15 @@
       <ul class="nav navbar-nav sort-search">
         <li class=""><a href="<?php echo U('SortSearch/search');?>">分类查找</a></li>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
-      <?php $url = U("Index/index"); $logoutUrl = U("Logout/index"); $name = session("?username") ? session('username') : session('orgname'); $info = session("?uid") ? '<li><a href="__APP__/UserCenter">个人中心</a></li>' : '<li><a href="/OrgCenter">企业中心</a></li>'; $dropdown1 = <<<THINK
+      -->
+      <ul class="user_position">
+      <?php $url = U("Index/index"); $logoutUrl = U("Logout/index"); $name = session("?username") ? session('username') : session('orgname'); $info = session("?uid") ? '<li><a href="__APP__/UserCenter">个人中心</a></li>' : '<li><a href="__APP__/OrgCenter">企业中心</a></li>'; $dropdown1 = <<<THINK
       	<li class="dropdown">
           <a href="$url" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">$name<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             $info
-            <li><a href="/PublishJobs">发布兼职</a></li>
-            <li><a href="/ChangePasswd">修改密码</a></li>
+            <li><a href="__APP__/PublishJobs">发布兼职</a></li>
+            <li><a href="__APP__/ChangePasswd">修改密码</a></li>
             <li class="divider"></li>
             <li><a href="$logoutUrl">注销</a></li>
           </ul>
@@ -96,7 +98,7 @@ THINK;
           <a href="$url" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">$name<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             $info
-            <li><a href="/ChangePasswd">修改密码</a></li>
+            <li><a href="__APP__/ChangePasswd">修改密码</a></li>
             <li class="divider"></li>
             <li><a href="$logoutUrl">注销</a></li>
           </ul>
@@ -245,10 +247,10 @@ THINK;
 
 <!--footer-->
 <div class="container">
-  <hr />
-  <p class="text-center">梦海网络</p>
-  <p class="my-info text-center"><a href="__APP__/">首页</a>/<a href="<?php echo U("Advice/index");?>">投诉建议</a>/<a href="__APP__/">关于梦海网络</a>/<a href="http://www.xiaomifengjob.com">联系我们</a></p>
-  <p class="copyright text-center">Copyright © 梦海网络 / 备案号：<a style="color:#000;" href="http://www.miitbeian.gov.cn/">鲁ICP备15023958号</a></p><p class="copyright text-center"> 地址：烟台市红旗中路</p>
+
+  <!--<p class="text-center">梦海网络</p>-->
+  <p class="my-info text-center"><a href="__APP__/">首页</a>/<a href="<?php echo U("Advice/index");?>">投诉建议</a>/<a href="__APP__/">关于我们</a>/<a href="http://www.xiaomifengjob.com">联系我们</a></p>
+  <p class="copyright text-center">Copyright © 梦海网络 / 备案号：<a style="color:#000;" href="http://www.miitbeian.gov.cn/">鲁ICP备15023958号</a></p><!--<p class="copyright text-center"> 地址：烟台市红旗中路</p>-->
   <p class="hidden"><script src="http://s11.cnzz.com/z_stat.php?id=1255390287&web_id=1255390287" language="JavaScript"></script></p>
 </div>
 <!--./footer-->

@@ -36,7 +36,7 @@ return array(
 	'MAIL_PASSWORD'   =>  'xmfroot2015', // 邮箱密码
     
     //TRACE
-	'SHOW_PAGE_TRACE' =>  true,
+	//'SHOW_PAGE_TRACE' =>  true,
 	
 	//认证执照和身份证照片上传路径
 	'UPLOAD_AUTH_PATH' => '/Uploads/auth', 

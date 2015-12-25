@@ -5,7 +5,6 @@ class RegisterAction extends Action{
 	private $passwd;
 	private $address;
 	private $orgname;
-
 	public function index(){
 		$this->display();
 	}
@@ -28,6 +27,8 @@ class RegisterAction extends Action{
 		$data['phone_num']  = $this->_post('phone_num');
 		$data['passwd'] = md5($this->_post('passwd'));
 		$data['ctime']  = time();
+		$invite = $this->_post('invite');
+		
 		
 		if($this->isOrg()){
 			$data['orgname']     = $this->_post('org');
@@ -37,27 +38,35 @@ class RegisterAction extends Action{
 			$data['school']      = $this->_post('school');
 		}
 		//验证，插入数据库
-		if($Reger->create($data,1)){
-			if($primary_id = $Reger->add()){
-				$f;
-				//设置session
-				if($this->isOrg()){
-					session('oid',$primary_id);
-					session('orgname',$data['orgname']);
-					$f = 2;
+		if($invite==689022){
+			if($Reger->create($data,1)){
+				if($primary_id = $Reger->add()){
+					$f;
+					//设置session
+					if($this->isOrg()){
+						session('oid',$primary_id);
+						session('orgname',$data['orgname']);
+						$f = 2;
+					}else{
+						session('uid',$primary_id);
+						session('username',$data['username']);
+						$f = 1;
+					}
+					$this->ajaxReturn(0,"注册成功，等待跳转",$f);
 				}else{
-					session('uid',$primary_id);
-					session('username',$data['username']);
-					$f = 1;
+					//echo $Reger->getLastSql();
+					$this->ajaxReturn(2,"注册失败，请重试",1);
 				}
-				$this->ajaxReturn(0,"注册成功，等待跳转",$f);
 			}else{
-				//echo $Reger->getLastSql();
-				$this->ajaxReturn(2,"注册失败，请重试",1);
+				$this->ajaxReturn(3,$Reger->getError(),1);
 			}
+			
+			
 		}else{
-			$this->ajaxReturn(3,$Reger->getError(),1);
+			$this->ajaxReturn(2,"注册失败，邀请码错误",1);
+			
 		}
+		
 	}
 
 	//判断是否是为企业用户注册
@@ -87,5 +96,6 @@ class RegisterAction extends Action{
 	public function ourArticle() {
 		$this->display();
 	}
+	
 }
 ?>

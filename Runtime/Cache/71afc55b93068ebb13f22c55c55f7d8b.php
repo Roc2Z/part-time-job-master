@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>注册-梦海网络</title>
+    <title>注册-e企校</title>
     <link href="__PUBLIC__/xmf32.ico" type="image/x-icon" rel=icon />
 <link href="__PUBLIC__/xmf32.ico" type="image/x-icon" rel="shortcut icon" />
 
@@ -15,6 +15,7 @@
 <script src="http://cdn.staticfile.org/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="__APP__/__GROUP__/css/common.css">
 <script src="__APP__/__GROUP__/js/common.js"></script>
+
     <style type="text/css">
     #email-goto {
         top: 13px;
@@ -51,7 +52,7 @@
 <nav class="navbar navbar-default">
   <div class="container">
     <div class="navbar-header">
-    	
+	
       <!--
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
         <span class="sr-only">Toggle navigation</span>
@@ -61,23 +62,23 @@
       </button>
       -->
       
-      <a class="" href="__APP__/"><img src="__APP__/Public/logo/logo.jpg" height="50" alt="小蜜蜂兼职logo" /></a>
-      <a class="u_user" href="__APP__/UserCenter">用户</a>
-    </div>
-
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class=""><a href="<?php echo U('ChangeCity/index');?>">切换城市 [<?php echo session("?city") ? session("city") : "烟台市" ?>]</a></li>
+      <a class="web_logo" href="__APP__/"><img src="__APP__/Public/logo/logo.jpg" height="50" alt="小蜜蜂兼职logo" /></a>
+      <!--
+      <ul class="city_name">
+        <li class=""><a href="<?php echo U('ChangeCity/index');?>">[<?php echo session("?city") ? session("city") : "烟台市" ?>]</a></li>
       </ul>
-
+      -->
+		<!--
       <form class="navbar-form navbar-left" role="search" method="get" action="<?php echo U('Search/s');?>">
         <div class="input-group">
+        	
           <div class="input-group-btn">
           <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span>兼职</span><span class="caret"></span></button>
           <ul class="dropdown-menu" role="menu" id="search-f">
             <li><a href="javascript:void(0)">用户</a></li>
           </ul>
         </div>
+        
           <input class="hidden" type="test" name="sf" value="job" id="hidden-f"/>
           <input type="text" class="form-control" name="wd" placeholder="兼职/用户...">
         </div>
@@ -86,14 +87,15 @@
       <ul class="nav navbar-nav sort-search">
         <li class=""><a href="<?php echo U('SortSearch/search');?>">分类查找</a></li>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
-      <?php $url = U("Index/index"); $logoutUrl = U("Logout/index"); $name = session("?username") ? session('username') : session('orgname'); $info = session("?uid") ? '<li><a href="__APP__/UserCenter">个人中心</a></li>' : '<li><a href="/OrgCenter">企业中心</a></li>'; $dropdown1 = <<<THINK
+      -->
+      <ul class="user_position">
+      <?php $url = U("Index/index"); $logoutUrl = U("Logout/index"); $name = session("?username") ? session('username') : session('orgname'); $info = session("?uid") ? '<li><a href="__APP__/UserCenter">个人中心</a></li>' : '<li><a href="__APP__/OrgCenter">企业中心</a></li>'; $dropdown1 = <<<THINK
       	<li class="dropdown">
           <a href="$url" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">$name<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             $info
-            <li><a href="/PublishJobs">发布兼职</a></li>
-            <li><a href="/ChangePasswd">修改密码</a></li>
+            <li><a href="__APP__/PublishJobs">发布兼职</a></li>
+            <li><a href="__APP__/ChangePasswd">修改密码</a></li>
             <li class="divider"></li>
             <li><a href="$logoutUrl">注销</a></li>
           </ul>
@@ -105,7 +107,7 @@ THINK;
           <a href="$url" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">$name<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             $info
-            <li><a href="/ChangePasswd">修改密码</a></li>
+            <li><a href="__APP__/ChangePasswd">修改密码</a></li>
             <li class="divider"></li>
             <li><a href="$logoutUrl">注销</a></li>
           </ul>
@@ -151,8 +153,9 @@ THINK;
                     <p></p>
                 </div>
                 <ul class="nav nav-pills" id="select-list">
-                    <li role="presentation" class="active"><a>求职者</a></li>
-                    <li role="presentation"><a>公司或机构组织</a></li>
+                    <li role="presentation" class="active"><a>公司或机构组织</a></li>
+                    
+                    
                 </ul>
                 <form method="post" action="<?php echo U('Register/reg');?>" id="reg-form" class="form-horizontal">
                     <div class="form-group">
@@ -161,19 +164,27 @@ THINK;
                         	<input id="phone_num" type="text" name="phone_num" class="form-control" placeholder="手机号" />
                         </div>
                     </div>
-                    <div id="username-container">
-	                    <div class="form-group">
-	                        <label for="username" class="col-sm-2">用户名：</label>
-	                        <div class="col-sm-8">
-	                        	<input id="username" type="text" name="username" class="form-control" placeholder="用户名" />
-	                        </div>
-	                    </div>
-                        <div class="form-group">
-                        <label for="school" class="col-sm-2">学校：</label>
-                        <div class="col-sm-8">
-                            <input id="school" type="text" name="school" class="form-control" placeholder="你的学校" />
+                    
+                    <div id="org-container">
+                    	<div class="form-group input-org">
+                        	<label for="org" class="col-sm-2">组织名称：</label>
+                            <div class="col-sm-8">
+                            	<input id="org" type="text" name="org" class="form-control" placeholder="组织机构名称" />
+                                <input name="reg_type" value="org" class="hidden"/>
+                            </div>
                         </div>
-                    </div>
+                        <div class="form-group input-org">
+                        	<label for="org_address" class="col-sm-2">所在地：</label>
+                            <div class="col-sm-8">
+                            	<input id="org_address" type="text" name="address" class="form-control" placeholder="组织机构所在地" />
+                            </div>
+                        </div>
+                        <div class="form-group input-org">
+                        	<label for="org_invite" class="col-sm-2">邀请码：</label>
+                            <div class="col-sm-8">
+                            	<input id="org_invite" type="text" name="invite" class="form-control" placeholder="邀请码" />
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="passwd" class="col-sm-2">密码：</label>
@@ -198,8 +209,7 @@ THINK;
                                 <button type="button" class="btn btn-default verify">刷新</button>
                             </div>
                     </div>
-                    <div id="org-container">
-                    </div>
+                    
 					<div class="form-group">
                     	<div class="col-sm-12">
                     	<input type="checkbox" class="" id="our-article" /><label for="our-article">同意我们的条款</label>（<a href="<?php echo U("Register/ourArticle");?>" target="_blank">查看</a>）
@@ -233,47 +243,15 @@ THINK;
         <!--end container-->
         <!--footer-->
         <div class="container">
-  <hr />
-  <p class="text-center">梦海网络</p>
-  <p class="my-info text-center"><a href="__APP__/">首页</a>/<a href="<?php echo U("Advice/index");?>">投诉建议</a>/<a href="__APP__/">关于梦海网络</a>/<a href="http://www.xiaomifengjob.com">联系我们</a></p>
-  <p class="copyright text-center">Copyright © 梦海网络 / 备案号：<a style="color:#000;" href="http://www.miitbeian.gov.cn/">鲁ICP备15023958号</a></p><p class="copyright text-center"> 地址：烟台市红旗中路</p>
+
+  <!--<p class="text-center">梦海网络</p>-->
+  <p class="my-info text-center"><a href="__APP__/">首页</a>/<a href="<?php echo U("Advice/index");?>">投诉建议</a>/<a href="__APP__/">关于我们</a>/<a href="http://www.xiaomifengjob.com">联系我们</a></p>
+  <p class="copyright text-center">Copyright © 梦海网络 / 备案号：<a style="color:#000;" href="http://www.miitbeian.gov.cn/">鲁ICP备15023958号</a></p><!--<p class="copyright text-center"> 地址：烟台市红旗中路</p>-->
   <p class="hidden"><script src="http://s11.cnzz.com/z_stat.php?id=1255390287&web_id=1255390287" language="JavaScript"></script></p>
 </div>
         <!--end footer-->
         <script type="text/javascript">
-        function tabShow(arg) {
-            for (var i = 0; i < 2; i++) {
-                $("#select-list>li").eq(i).removeClass("active");
-            }
-            $("#select-list>li").eq(arg).addClass("active");
-            whatToSelect = arg;
-        }
-        function showChange(arg) {
-                var strorg = new String('<div class="form-group input-org"><label for="org" class="col-sm-2">组织名称：</label><div class="col-sm-8"><input id="org" type="text" name="org" class="form-control" placeholder="组织机构名称" /><input name="reg_type" value="org" class="hidden"/></div></div><div class="form-group input-org"><label for="org_address" class="col-sm-2">所在地：</label><div class="col-sm-8"><input id="org_address" type="text" name="address" class="form-control" placeholder="组织机构所在地" /></div></div>');
-                var struser = new String('<div class="form-group"><label for="username" class="col-sm-2">用户名：</label><div class="col-sm-8"><input id="username" type="text" name="username" class="form-control" placeholder="用户名" /></div></div><div class="form-group"><label for="school" class="col-sm-2">学校：</label><div class="col-sm-8"><input id="school" type="text" name="school" class="form-control" placeholder="你的学校" /></div>');
-                if(arg == 0){
-                	//求职者注册
-                    if($(".input-org")){
-                        $(".input-org").remove();
-                       	$("#username-container").html(struser);
-                    }
-                }else{
-                	//企业注册
-                    if($(".input-org").length == 0){
-                    	$("#username-container").html(null);
-                        $("#org-container").html(strorg);
-                    }
-                }
-            }
-            //绑定事件
-        $("#select-list>li").eq(0).click(function() {
-            tabShow(0);
-            showChange(0);
-        });
-        $("#select-list>li").eq(1).click(function() {
-            tabShow(1);
-            showChange(1);
-        });
+       
         (function(){
         	$(".alert button").on('click',function(){
         		$(this).parent().addClass("hidden");

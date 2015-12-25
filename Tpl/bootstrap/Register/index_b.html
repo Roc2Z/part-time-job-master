@@ -51,9 +51,8 @@
                     <p></p>
                 </div>
                 <ul class="nav nav-pills" id="select-list">
-                    <li role="presentation" class="active"><a>公司或机构组织</a></li>
-                    
-                    
+                    <li role="presentation" class="active"><a>求职者</a></li>
+                    <li role="presentation"><a>公司或机构组织</a></li>
                 </ul>
                 <form method="post" action="{:U('Register/reg')}" id="reg-form" class="form-horizontal">
                     <div class="form-group">
@@ -62,27 +61,19 @@
                         	<input id="phone_num" type="text" name="phone_num" class="form-control" placeholder="手机号" />
                         </div>
                     </div>
-                    
-                    <div id="org-container">
-                    	<div class="form-group input-org">
-                        	<label for="org" class="col-sm-2">组织名称：</label>
-                            <div class="col-sm-8">
-                            	<input id="org" type="text" name="org" class="form-control" placeholder="组织机构名称" />
-                                <input name="reg_type" value="org" class="hidden"/>
-                            </div>
+                    <div id="username-container">
+	                    <div class="form-group">
+	                        <label for="username" class="col-sm-2">用户名：</label>
+	                        <div class="col-sm-8">
+	                        	<input id="username" type="text" name="username" class="form-control" placeholder="用户名" />
+	                        </div>
+	                    </div>
+                        <div class="form-group">
+                        <label for="school" class="col-sm-2">学校：</label>
+                        <div class="col-sm-8">
+                            <input id="school" type="text" name="school" class="form-control" placeholder="你的学校" />
                         </div>
-                        <div class="form-group input-org">
-                        	<label for="org_address" class="col-sm-2">所在地：</label>
-                            <div class="col-sm-8">
-                            	<input id="org_address" type="text" name="address" class="form-control" placeholder="组织机构所在地" />
-                            </div>
-                        </div>
-                        <div class="form-group input-org">
-                        	<label for="org_invite" class="col-sm-2">邀请码：</label>
-                            <div class="col-sm-8">
-                            	<input id="org_invite" type="text" name="invite" class="form-control" placeholder="邀请码" />
-                            </div>
-                        </div>
+                    </div>
                     </div>
                     <div class="form-group">
                         <label for="passwd" class="col-sm-2">密码：</label>
@@ -107,7 +98,8 @@
                                 <button type="button" class="btn btn-default verify">刷新</button>
                             </div>
                     </div>
-                    
+                    <div id="org-container">
+                    </div>
 					<div class="form-group">
                     	<div class="col-sm-12">
                     	<input type="checkbox" class="" id="our-article" /><label for="our-article">同意我们的条款</label>（<a href="{:U("Register/ourArticle")}" target="_blank">查看</a>）
@@ -126,7 +118,39 @@
         <include file="./Tpl/bootstrap/public/footer.html" />
         <!--end footer-->
         <script type="text/javascript">
-       
+        function tabShow(arg) {
+            for (var i = 0; i < 2; i++) {
+                $("#select-list>li").eq(i).removeClass("active");
+            }
+            $("#select-list>li").eq(arg).addClass("active");
+            whatToSelect = arg;
+        }
+        function showChange(arg) {
+                var strorg = new String('<div class="form-group input-org"><label for="org" class="col-sm-2">组织名称：</label><div class="col-sm-8"><input id="org" type="text" name="org" class="form-control" placeholder="组织机构名称" /><input name="reg_type" value="org" class="hidden"/></div></div><div class="form-group input-org"><label for="org_address" class="col-sm-2">所在地：</label><div class="col-sm-8"><input id="org_address" type="text" name="address" class="form-control" placeholder="组织机构所在地" /></div></div>');
+                var struser = new String('<div class="form-group"><label for="username" class="col-sm-2">用户名：</label><div class="col-sm-8"><input id="username" type="text" name="username" class="form-control" placeholder="用户名" /></div></div><div class="form-group"><label for="school" class="col-sm-2">学校：</label><div class="col-sm-8"><input id="school" type="text" name="school" class="form-control" placeholder="你的学校" /></div>');
+                if(arg == 0){
+                	//求职者注册
+                    if($(".input-org")){
+                        $(".input-org").remove();
+                       	$("#username-container").html(struser);
+                    }
+                }else{
+                	//企业注册
+                    if($(".input-org").length == 0){
+                    	$("#username-container").html(null);
+                        $("#org-container").html(strorg);
+                    }
+                }
+            }
+            //绑定事件
+        $("#select-list>li").eq(0).click(function() {
+            tabShow(0);
+            showChange(0);
+        });
+        $("#select-list>li").eq(1).click(function() {
+            tabShow(1);
+            showChange(1);
+        });
         (function(){
         	$(".alert button").on('click',function(){
         		$(this).parent().addClass("hidden");

@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>发布一个兼职-小蜜蜂job</title>
+    <title>发布一个兼职-e企校</title>
     <include file="./Tpl/bootstrap/public/static.html" />
     <link href="__APP__/__GROUP__/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
     <script type="text/javascript" src="__APP__/__GROUP__/js/bootstrap-datetimepicker.min.js" charset="UTF-8"></script>
@@ -214,7 +214,7 @@
                         区：<select id='district' style="width:100px" onchange='search(this)'></select>
                         商圈：<select id='biz_area' style="width:100px"></select>
                     </div>
-                    <div id="mapContainer"></div>
+                    <!--<div id="mapContainer"></div>-->
                     
                 </div>
                 <div class="modal-footer">
@@ -237,15 +237,15 @@
     <script type="text/javascript" src="__APP__/__GROUP__/js/map.js"></script>
     <script type="text/javascript">
     //Modal
-    $("#addressname").on('focus',function(){
-      $(".modal").modal('show');
-    });
-    $('.modal').on('hidden.bs.modal', function (e) {
-        if(addressname){
-            $("#address").val(address.x + "," +address.y);
-            $("#addressname").val(addressname);  
-        }
-    })
+    //$("#addressname").on('focus',function(){
+    //  $(".modal").modal('show');
+    //});
+   // $('.modal').on('hidden.bs.modal', function (e) {
+    //    if(addressname){
+     //       $("#address").val(address.x + "," +address.y);
+      //      $("#addressname").val(addressname);  
+     //   }
+    //})
     
     //时间控件
     $("#begin_time").datetimepicker({
@@ -255,15 +255,17 @@
     $("#publish").click(function() {
         //获取数据
         var info = getFromInput("#jobinfo");
+		$("#addressname").val(addressname); 
         info['detail'] = $("textarea[name='detail']").val();
-        if(address.x && address.y){
-          info.address = address.x + "," +address.y;
-        }else if($("#address").val()){
-          info.address = $("#address").val();
-        }else{
-          address = '';
-        }
-        info.addresscity = addresscity;
+       // if(address.x && address.y){
+       //   info.address = address.x + "," +address.y;
+        //}else if($("#address").val()){
+         // info.address = $("#address").val();
+       // }else{
+        //  address = '';
+       // }
+        //info.addresscity = addresscity;
+		//alert(addresscity);
         console.log(info);
         //ajax
         $.ajax({
