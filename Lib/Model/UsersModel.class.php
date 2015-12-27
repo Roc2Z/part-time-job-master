@@ -5,7 +5,7 @@ class UsersModel extends Model{
 		//array('username','require','请输入用户名',1),
 		//array('username','1,20','用户名最长为20个字符',1,'length'),
 		
-		//array('phone','','手机号已被占用',1,'unique',1),
+		array('phone','','手机号已被占用',1,'unique',1),
 		//array('phone','/1[3|5|7|8|][0-9]{9}/','请输入正确的手机号',0,'regex',1),
 		
 		//array('passwd','require','请输入密码',0,'regex'),
@@ -20,7 +20,7 @@ class UsersModel extends Model{
 		//array('area','require','请选择居住地',1,'regex',2),
 		//array('exp','1,100','介绍字数在100字以内',1,'length',2),
 		//array('intent','isHave','请至少选择一项求职意向',1,'callback',2),
-		//array('openid','','gg',1,'unique',1),  	
+		array('openid','','gg',1,'unique',2),  	
 		//array('ctime'),
 	);
 	public function isHave() {

@@ -3,7 +3,7 @@ return array(
 	//'配置项'=>'配置值'
     
     //数据库配置
-    'DB_DSN' => 'mysql://root:root@localhost:3306/think_job',
+    'DB_DSN' => 'mysql://uF5eK6OmqDlTP:pU3px3iznCeWG@10.4.3.92:3306/d5e4416448bbd464ba1cbef51c2b4ff1a',
     'URL_MODEL' => 2,
     'DEFAULT_THEME' => 'bootstrap',
 	

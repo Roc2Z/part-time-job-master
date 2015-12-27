@@ -115,8 +115,8 @@ class IndexAction extends Action{
 	}
 	
 	function UserAuto(){
-		define("APPID", "wxcb036340c9623e17");
-		define("APPSECRET", "76c6e7ab89bad1d8f17d905d937b8f93");
+		define("APPID", "wx4afc293b9b16c550");
+		define("APPSECRET", "3c94b7c07c340d9ad13b0dbfdb8b24e5");
 		if (isset($_GET['code'])){
 			$CODE=$_GET['code'];//获取code
 		}else{
@@ -161,6 +161,16 @@ class IndexAction extends Action{
 					
 					//$this->ajaxReturn(0,"注册成功，等待跳转",$f);
 				}
+		}else{
+			$expire = 3600*24*3;
+			$primary_aid = $Reger->where('openid='.$data['openid'])->find();
+			session('uid',$primary_aid);
+			session('username',$data['username']);
+			session('openid',$data['openid']);
+			cookie('uid',$primary_id,$expire);
+			cookie('username',$data['username'],$expire);
+			cookie('openid',$data['openid'],$expire);
+			
 		}
 		
 	}

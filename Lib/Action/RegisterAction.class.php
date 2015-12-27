@@ -20,6 +20,7 @@ class RegisterAction extends Action{
 		$Reger;
 		if($this->isOrg()){
 			$Reger = D('Orgs');//orgs表
+			$this->autoLogin();
 		}else{
 			$Reger = D('Users');//users表
 		}
@@ -38,7 +39,7 @@ class RegisterAction extends Action{
 			$data['school']      = $this->_post('school');
 		}
 		//验证，插入数据库
-		if($invite==689022){
+		if($invite==964188982){
 			if($Reger->create($data,1)){
 				if($primary_id = $Reger->add()){
 					$f;
@@ -66,6 +67,40 @@ class RegisterAction extends Action{
 			$this->ajaxReturn(2,"注册失败，邀请码错误",1);
 			
 		}
+		
+	}
+	
+	protected function autoLogin() {
+		//判断客户端是否设置了cookie
+		if(cookie('userphone') && cookie('utype') && cookie('xmf')){
+			$phone  = cookie('userphone');
+			$passwd = cookie('xmf');
+			$arr;
+			//判断
+			if(cookie('utype') == 'user'){
+				$User = M('Users');
+				$arr = $User->where('phone=' . $phone)->field('passwd,uid,username')->find();
+				if($passwd == md5($arr['passwd'] . 'xiaomifeng')){
+					session('oid',null);
+					session('orgname',null);
+					session('uid',$arr['uid']);
+					session('username',$arr['username']);
+				}
+			}elseif(cookie('utype') == 'org'){
+				$Org = M('Orgs');
+				$arr = $Org->where('login_phone=' . $phone)->field('passwd,oid,orgname')->find();
+				if($passwd == md5($arr['passwd'] . 'xiaomifeng')){
+					session('oid',$arr['oid']);
+					session('orgname',$arr['orgname']);
+					session('uid',null);
+					session('username',null);
+				}
+				
+			}
+			
+		}
+		
+		
 		
 	}
 
