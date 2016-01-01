@@ -1,1 +1,0 @@
-<?php	return array ( 0 => 'mid', 1 => 'name', '_autoinc' => true, '_pk' => 'mid', '_type' => array ( 'mid' => 'int(255)', 'name' => 'varchar(10)', ), );?>

@@ -131,7 +131,7 @@
                                         </switch></li>
                                         <li class="job_content">到岗时间：{$list.begin_time|date="m月d日h:i",###}</li>
                                         <li class="job_content">工作时长：{$list.work_time}小时</li>
-                                        <li class="job_content">联系人：{$list.leader}<small>（联系我时，请说是在小蜜蜂上看到的）</small></li>
+                                        <li class="job_content">联系人：{$list.leader}<small>（联系我时，请说是在e企校上看到的）</small></li>
                                         <li class="job_content">联系电话：
                                         <if condition="$a_tourist">
                                             {$a_tourist}
@@ -233,7 +233,9 @@
                                 </div>
                             </div>
                         </div>
+                        
                         <hr />
+                        <label class="prompt">提示：凡收取费用，需缴纳押金的企业均有欺诈嫌疑，请您警惕</label>
                     </div>
                 </div>
             </div>
@@ -294,52 +296,7 @@
 		}
     });
     </script>
-    <script type="text/javascript">
-    //加载地图
-    (function(){
-      var x= "{$list.address.0}",y = {$list.address.1|default='true'};
-      var map;
-      if(y === true){
-        (function(exprots){
-          map = new AMap.Map('mapContainer',{
-            view:new AMap.View2D({
-              zoom: 13
-            })
-          });
-        })(window);
-        return;
-      }
-      
-        (function(exprots){
-          map = new AMap.Map('mapContainer',{
-            view:new AMap.View2D({
-              center: new AMap.LngLat(x,y),
-              zoom: 15
-            })
-          });
-        })(window);
-        marker = new AMap.Marker({          
-        icon:"http://webapi.amap.com/images/marker_sprite.png",
-        position:new AMap.LngLat(x,y)
-      });
-      marker.setMap(map);  //在地图上添加点
-    })();
-    $("#assess-btn").on('click',function(){
-        $.ajax({
-            url: "{:U("OrgEvalute/index")}",
-            data:{
-                content:$("textarea[name='assess-content']").val()
-            },
-            type:"POST",
-            success:function(data){
-                alert(data.info);
-                if(data.data == 1){
-                    location.href = "";
-                }
-            }
-        });
-    });
-    </script>
+    
     <!--./footer-->
 </body>
 

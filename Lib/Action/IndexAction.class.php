@@ -146,7 +146,18 @@ class IndexAction extends Action{
 		
 		//var_dump($data['openid']);
 		$Reger = D('Users');
-		if($Reger->create($data,1)){
+		if($Reger->where(array("openid"=>$data['openid']))->count()){
+			//存在
+			$expire = 3600*24*3;
+			$arr = $Reger->where(array("openid"=>$data['openid']))->field('uid,username')->find();
+			session('uid',$arr['uid']);
+			session('username',$arr['username']);
+			cookie('uid',$arr['uid'],$expire);
+			cookie('username',$arr['username'],$expire);
+			
+		}else{
+			//不存在
+			if($Reger->create($data,1)){
 				if($primary_id = $Reger->add()){
 					
 					//设置session
@@ -161,17 +172,10 @@ class IndexAction extends Action{
 					
 					//$this->ajaxReturn(0,"注册成功，等待跳转",$f);
 				}
-		}else{
-			$expire = 3600*24*3;
-			$primary_aid = $Reger->where('openid='.$data['openid'])->find();
-			session('uid',$primary_aid);
-			session('username',$data['username']);
-			session('openid',$data['openid']);
-			cookie('uid',$primary_id,$expire);
-			cookie('username',$data['username'],$expire);
-			cookie('openid',$data['openid'],$expire);
-			
+			}
+     
 		}
+		
 		
 	}
 }

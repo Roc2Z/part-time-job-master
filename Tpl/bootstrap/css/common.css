@@ -42,6 +42,9 @@ ul, ol {
     background: #DDD;
     color:#888; 
 }
+.prompt{
+	color:red;
+	}
 .glyphicon{
 	color:#00F;
 	}
