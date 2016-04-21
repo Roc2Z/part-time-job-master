@@ -30,10 +30,10 @@ return array(
     'SESSION_AUTO_START' =>true,
     //SMTP
     'MAIL_USERNAME'   =>  '小蜜蜂兼职',
-    'MAIL_ADDRESS'    =>  'no-reply@xiaomifengjob.com', // 邮箱地址  
-	'MAIL_LOGINNAME'  =>  'no-reply@xiaomifengjob.com', // 邮箱登录帐号
-	'MAIL_SMTP'       =>  'smtp.ym.163.com', // 邮箱SMTP服务器
-	'MAIL_PASSWORD'   =>  'xmfroot2015', // 邮箱密码
+    'MAIL_ADDRESS'    =>  'no-remifengjob.com', // 邮箱地址  
+	'MAIL_LOGINNAME'  =>  'no-reifengjob.com', // 邮箱登录帐号
+	'MAIL_SMTP'       =>  'smtp.3.com', // 邮箱SMTP服务器
+	'MAIL_PASSWORD'   =>  'xoo', // 邮箱密码
     
     //TRACE
 	//'SHOW_PAGE_TRACE' =>  true,
